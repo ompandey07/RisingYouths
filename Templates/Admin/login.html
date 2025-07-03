@@ -4,12 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Welcome Back</title>
+    <title>Login</title>
+    <link rel="shortcut icon" href="{% static 'Images/Logo/logo.png' %}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
     <style>
         body {
-            background: #f8fafc;
+            background: #ffffff;
             min-height: 100vh;
+            margin: 0;
+            padding: 0;
         }
         
         .glass-effect {
@@ -134,38 +141,139 @@
         .toast-slide-out {
             animation: slideOutRight 0.3s ease forwards;
         }
+
+        /* Preloader Bar Styles */
+        .preloader-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .preloader-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5, #6366f1, #8b5cf6);
+            background-size: 200% 100%;
+            animation: loading 2s ease-in-out infinite;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .preloader-pulse {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Main Content Container */
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .content-wrapper {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .center-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #4f46e5, #6366f1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem auto;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .center-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 640px) {
+            .content-wrapper {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .top-bar {
+                padding: 0.75rem 1rem;
+            }
+        }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
-    <!-- Toast Container -->
-    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+<body>
+    <!-- Preloader Bar -->
+    <div class="preloader-bar">
+        <div class="preloader-progress" id="preloader-progress">
+            <div class="preloader-pulse"></div>
+        </div>
+    </div>
 
-    <div class="w-full max-w-md">
-        <!-- Welcome Header -->
-        <div class="text-center mb-8 animate-fade-in-up">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-lg mb-4 overflow-hidden">
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-40 space-y-2"></div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-wrapper animate-fade-in-up">
+            <!-- Center Logo -->
+            <div class="center-logo">
                 <img src="{% static 'Images/Logo/logo.png' %}" alt="Logo" class="w-12 h-12 object-contain">
             </div>
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
-            <p class="text-gray-600">Sign in to your account to continue</p>
-        </div>
 
-        <!-- Login Card -->
-        <div class="bg-white rounded-2xl shadow-2xl card-shadow p-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+            <!-- Welcome Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
+                <p class="text-gray-600">Sign in to your account to continue your journey</p>
+            </div>
+
+            <!-- Login Form -->
             <form method="POST" class="space-y-6">
                 {% csrf_token %}
                 
                 <!-- Username Field -->
                 <div class="input-group">
                     <input 
-                        type="text" 
+                        type="email" 
                         name="username" 
                         id="username"
                         class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-transparent"
                         placeholder="Username"
                         required
                     >
-                    <label for="username" class="floating-label">Username</label>
+                    <label for="username" class="floating-label">Email</label>
                 </div>
 
                 <!-- Password Field -->
@@ -215,6 +323,16 @@
                 >
                     Sign In
                 </button>
+
+                <!-- Sign Up Link -->
+                <div class="text-center pt-4 border-t border-gray-200">
+                    <p class="text-gray-600">
+                        Go to Home Again? 
+                        <a href="{% url "main_home_page_view" %}" class="text-indigo-600 hover:text-indigo-500 font-medium transition-colors">
+                            Home
+                        </a>
+                    </p>
+                </div>
             </form>
         </div>
     </div>
@@ -320,9 +438,46 @@
             {% endif %}
         });
 
-        // Example usage (you can remove this)
-        // showToast("Invalid username or password", "error");
-        // showToast("Login successful!", "success");
+        // Smooth scroll effect for mobile
+        if (window.innerWidth <= 768) {
+            document.body.style.overflowX = 'hidden';
+        }
+
+        // Preloader functionality
+        function simulateLoading() {
+            const progressBar = document.getElementById('preloader-progress');
+            let progress = 0;
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.querySelector('.preloader-bar').style.opacity = '0';
+                        setTimeout(() => {
+                            document.querySelector('.preloader-bar').style.display = 'none';
+                        }, 500);
+                    }, 500);
+                }
+            }, 200);
+        }
+
+        // Start loading animation on page load
+        window.addEventListener('load', () => {
+            simulateLoading();
+        });
+
+        // Also trigger on form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            document.querySelector('.preloader-bar').style.display = 'block';
+            document.querySelector('.preloader-bar').style.opacity = '1';
+            document.getElementById('preloader-progress').style.width = '0%';
+            simulateLoading();
+        });
     </script>
 </body>
 </html>

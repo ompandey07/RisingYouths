@@ -13,38 +13,43 @@
 <body class="font-sans">
     <!-- Header -->
     <header class="bg-indigo-900 text-white py-3 px-6">
-        <div class="container mx-auto flex justify-between items-center">
-            <!-- Logo and Company Name -->
-            <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 rounded-full overflow-hidden bg-green-500 flex items-center justify-center">
-                    <img src="{% static 'Images/Logo/logo.png' %}" 
-                         alt="Rising Youths Logo" 
-                         class="w-full h-full object-cover"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <i class="ri-plant-line text-white text-xl hidden"></i>
-                </div>
-                <div>
-                    <h1 class="text-lg md:text-xl font-bold">RISING YOUTHS OVERSEAS PVT. LTD.</h1>
-                    <p class="text-xs md:text-sm text-green-400">Where Careers Blossom ✨</p>
-                </div>
+       <div class="container mx-auto flex justify-between items-center">
+             <!-- Logo and Company Name -->
+             <div class="flex items-center space-x-3">
+                 <div class="w-12 h-12 rounded-full overflow-hidden bg-green-500 flex items-center justify-center">
+                     <img src="{% static 'Images/Logo/logo.png' %}" 
+                          alt="Rising Youths Logo" 
+                          class="w-full h-full object-cover"
+                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                     <i class="ri-plant-line text-white text-xl hidden"></i>
+                 </div>
+                 <div>
+                     <h1 class="text-lg md:text-xl font-bold">RISING YOUTHS OVERSEAS PVT. LTD.</h1>
+                     <p class="text-xs md:text-sm text-green-400">Where Careers Blossom ✨</p>
+                 </div>
+             </div>
+     
+             <!-- Contact Information - Hidden on mobile -->
+             <div class="hidden lg:flex items-center space-x-6">
+                 <div class="flex items-center space-x-2">
+                     <i class="ri-map-pin-line text-green-400"></i>
+                     <span class="text-sm">Putali Sadak 12, Kathmandu, Nepal</span>
+                 </div>
+                 <div class="flex items-center space-x-2">
+                     <i class="ri-phone-line text-green-400"></i>
+                     <span class="text-sm">9823270812</span>
+                 </div>
+                 <div class="flex items-center space-x-2">
+                     <i class="ri-mail-line text-green-400"></i>
+                     <span class="text-sm">info@manpowername.com.np</span>
+                 </div>
+     
+                 <!-- User Icon Link -->
+                 <a href="{% url "login_view" %}" class="text-green-400 hover:text-white text-lg">
+                     <i class="ri-user-line"></i>
+                 </a>
+             </div>
             </div>
-            
-            <!-- Contact Information - Hidden on mobile -->
-            <div class="hidden lg:flex items-center space-x-6">
-                <div class="flex items-center space-x-2">
-                    <i class="ri-map-pin-line text-green-400"></i>
-                    <span class="text-sm">Putali Sadak 12, Kathmandu, Nepal</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <i class="ri-phone-line text-green-400"></i>
-                    <span class="text-sm">9823270812</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <i class="ri-mail-line text-green-400"></i>
-                    <span class="text-sm">info@manpowername.com.np</span>
-                </div>
-            </div>
-        </div>
     </header>
 
     <!-- Navigation -->

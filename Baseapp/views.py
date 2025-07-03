@@ -1,4 +1,5 @@
 from django.shortcuts import render , redirect
+from Admin.models import BlogPost
 
 # Create your views here.
 
@@ -8,7 +9,8 @@ def main_home_page_view (request):
     """
     Render the main home page of the Rising Youths Overseas Pvt. Ltd. website.
     """
-    return render(request, 'index.html')
+    blogs = BlogPost.objects.all().order_by('-created_at')[:6]  # Fetch the latest 3 blog posts
+    return render(request, 'index.html' , {'blogs': blogs})
 
 
 

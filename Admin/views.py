@@ -5,6 +5,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 from .models import BlogPost
+from Backend.models import ContactMessage
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -14,31 +15,43 @@ from django.contrib.auth.models import User
 
 
 def login_view(request):
+    # If user is already authenticated, redirect to dashboard
+    if request.user.is_authenticated:
+        return redirect('admin_dashboard')
+
     # Create default user if it doesn't exist
-    default_username = "risingyouth@admin.com"
+    default_email = "risingyouth@admin.com"
     default_password = "admin@1200"
-    
-    if not User.objects.filter(username=default_username).exists():
+
+    if not User.objects.filter(email=default_email).exists():
         User.objects.create_superuser(
-            username=default_username, 
-            email=default_username, 
+            username=default_email,  # Using email as username
+            email=default_email,
             password=default_password
         )
-        print(f"Default superuser created: {default_username}")
-    
+        print(f"Default superuser created: {default_email}")
+
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('username')  # Input field is named 'username' but contains email
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('admin_dashboard')  # Redirect to the admin dashboard after login
-        else:
-            messages.error(request, 'Invalid username or password')
-    
+
+        try:
+            user = User.objects.get(email=email)
+            user = authenticate(request, username=user.username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('admin_dashboard')
+            else:
+                messages.error(request, 'Invalid email or password')
+        except User.DoesNotExist:
+            messages.error(request, 'Invalid email or password')
+
     return render(request, 'Admin/login.html')
 
 
+def logout_view(request):
+    logout(request)
+    return redirect('login_view')
 
 
 def admin_dashboard_view(request):
@@ -48,7 +61,16 @@ def admin_dashboard_view(request):
     if not request.user.is_superuser and request.user.username != "admin@admin.com":
         return redirect('error_acces_denied')
 
-    return render(request, 'Admin/AdminDashboard.html')
+
+    total_blogs = BlogPost.objects.count()
+    total_contact = ContactMessage.objects.count()
+
+    cotext  = {
+        'total_blogs': total_blogs,
+        'total_contact': total_contact,
+    }
+
+    return render(request, 'Admin/AdminDashboard.html' , cotext)
 
 
 
@@ -151,3 +173,51 @@ def delete_post(request, post_id):
     except Exception as e:
         # Handle errors gracefully
         return redirect('manage_blog_view', error="Failed to delete post.")
+    
+
+
+
+def blog_detail_view(request, blog_id):
+    """
+    Display a single blog post in detail with related posts.
+    """
+    # Get the specific blog post or return 404 if not found
+    blog = get_object_or_404(BlogPost, id=blog_id)
+    
+    # Get related posts (same category, excluding current post)
+    related_blogs = BlogPost.objects.filter(
+        category=blog.category
+    ).exclude(id=blog_id).order_by('-created_at')[:3]
+    
+    # If no related posts in same category, get latest posts
+    if not related_blogs:
+        related_blogs = BlogPost.objects.exclude(
+            id=blog_id
+        ).order_by('-created_at')[:3]
+    
+    context = {
+        'blog': blog,
+        'related_blogs': related_blogs,
+    }
+    
+    return render(request, 'Admin/blog_detail.html', context)
+
+
+
+def blog_list_view(request):
+    """
+    Display all blog posts in a beautiful grid layout.
+    """
+    # Get all blog posts ordered by creation date (newest first)
+    blogs = BlogPost.objects.all().order_by('-created_at')
+    
+    # Optional: Add pagination if you have many blogs
+    # paginator = Paginator(blogs, 12)  # Show 12 blogs per page
+    # page_number = request.GET.get('page')
+    # blogs = paginator.get_page(page_number)
+    
+    context = {
+        'blogs': blogs,
+    }
+    
+    return render(request, 'Admin/all_blogs.html', context)

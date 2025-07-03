@@ -8,12 +8,15 @@ urlpatterns = [
 
     path('arena/', views.post_arena_log_view , name="post_arena_log_view"),
     path('edit-blog/<int:post_id>/', views.post_arena_log_view, name='edit_blog'),
-    path('manage_arena/', views.manage_blog_view , name="manage_blog_view"),
+    path('manage_blogs/', views.manage_blog_view , name="manage_blog_view"),
     path('delete-post/<int:post_id>/', views.delete_post, name='delete_post'),
+    path('blog/<int:blog_id>/', views.blog_detail_view, name='blog_detail'),
+    path('blogs/', views.blog_list_view, name='blog_list'),
 
 
     path('login/', views.login_view, name='login_view'),
-    path('admin_dashboard/', views.admin_dashboard_view, name='admin_dashboard'),
+    path('logout/', views.logout_view, name='logout_view'),
+    path('dashboard/', views.admin_dashboard_view, name='admin_dashboard'),
  
     
     
