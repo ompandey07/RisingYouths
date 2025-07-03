@@ -1,0 +1,384 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rising Youths Overseas Pvt. Ltd.</title>
+    <link rel="shortcut icon" href="{% static 'Images/Logo/logo.png' %}" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+     <link rel="stylesheet" href="{% static 'Base/style.css' %}">
+</head>
+<body class="font-sans">
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white py-3 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo and Company Name -->
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-full overflow-hidden bg-green-500 flex items-center justify-center">
+                    <img src="{% static 'Images/Logo/logo.png' %}" 
+                         alt="Rising Youths Logo" 
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <i class="ri-plant-line text-white text-xl hidden"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold">RISING YOUTHS OVERSEAS PVT. LTD.</h1>
+                    <p class="text-xs md:text-sm text-green-400">Where Careers Blossom ✨</p>
+                </div>
+            </div>
+            
+            <!-- Contact Information - Hidden on mobile -->
+            <div class="hidden lg:flex items-center space-x-6">
+                <div class="flex items-center space-x-2">
+                    <i class="ri-map-pin-line text-green-400"></i>
+                    <span class="text-sm">Putali Sadak 12, Kathmandu, Nepal</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="ri-phone-line text-green-400"></i>
+                    <span class="text-sm">9823270812</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="ri-mail-line text-green-400"></i>
+                    <span class="text-sm">info@manpowername.com.np</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-gradient py-4">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <!-- Desktop Navigation -->
+                <ul class="hidden md:flex justify-center space-x-4 lg:space-x-8 text-white font-medium flex-1">
+                    <li><a href="{% url "main_home_page_view" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">HOME</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="hover:text-yellow-200 transition-colors flex items-center text-sm lg:text-base">
+                            WHO WE ARE
+                            <i class="ri-arrow-down-s-line ml-1"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="{% url "chairman_message_view" %}">MESSAGE FROM CHAIRMAN</a>
+                            <a href="{% url "about_us_view" %}">ABOUT US</a>
+                            <a href="{% url "our_team_view" %}">OUR TEAM</a>
+                            <a href="{% url "license_and_certificates_view" %}">LICENSE & CERTIFICATES</a>
+                            <a href="{% url "organizational_chart_view" %}">ORGANIZATIONAL CHART</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="hover:text-yellow-200 transition-colors flex items-center text-sm lg:text-base">
+                            WHAT WE DO
+                            <i class="ri-arrow-down-s-line ml-1"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#">CONSULTING</a>
+                            <a href="#">TRAINING & ORIENTATION</a>
+                            <a href="#">TRAVEL MANAGEMENT</a>
+                            <a href="#">HUMAN RESOURCES</a>
+                        </div>
+                    </li>
+                    <li><a href="#" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">PROCEDURES</a></li>
+                    <li><a href="#" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">GALLERY</a></li>
+                    <li><a href="#" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">BLOG</a></li>
+                    <li><a href="#" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">CONTACT</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                    <i class="ri-menu-line"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-0 left-0 w-full h-full bg-indigo-900 z-50">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-8">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="ri-plant-line text-white text-lg"></i>
+                        </div>
+                        <span class="text-white font-bold">RISING YOUTHS</span>
+                    </div>
+                    <button id="mobile-menu-close" class="text-white text-2xl">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+                
+                <ul class="space-y-4 text-white">
+                    <li><a href="{% url "main_home_page_view" %}" class="block py-2 text-lg">HOME</a></li>
+                    <li>
+                        <details class="group">
+                            <summary class="flex items-center justify-between py-2 text-lg cursor-pointer">
+                                WHO WE ARE
+                                <i class="ri-arrow-down-s-line group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <ul class="ml-4 mt-2 space-y-2">
+                                <li><a href="{% url "chairman_message_view" %}" class="block py-1 text-gray-300">MESSAGE FROM CHAIRMAN</a></li>
+                                <li><a href="{% url "about_us_view" %}" class="block py-1 text-gray-300">ABOUT US</a></li>
+                                <li><a href="{% url "our_team_view" %}" class="block py-1 text-gray-300">OUR TEAM</a></li>
+                                <li><a href="{% url "license_and_certificates_view" %}" class="block py-1 text-gray-300">LICENSE & CERTIFICATES</a></li>
+                                <li><a href="{% url "organizational_chart_view" %}" class="block py-1 text-gray-300">ORGANIZATIONAL CHART</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="group">
+                            <summary class="flex items-center justify-between py-2 text-lg cursor-pointer">
+                                WHAT WE DO
+                                <i class="ri-arrow-down-s-line group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <ul class="ml-4 mt-2 space-y-2">
+                                <li><a href="#" class="block py-1 text-gray-300">CONSULTING</a></li>
+                                <li><a href="#" class="block py-1 text-gray-300">TRAINING & ORIENTATION</a></li>
+                                <li><a href="#" class="block py-1 text-gray-300">TRAVEL MANAGEMENT</a></li>
+                                <li><a href="#" class="block py-1 text-gray-300">HUMAN RESOURCES</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li><a href="#" class="block py-2 text-lg">PROCEDURES</a></li>
+                    <li><a href="#" class="block py-2 text-lg">GALLERY</a></li>
+                    <li><a href="#" class="block py-2 text-lg">BLOG</a></li>
+                    <li><a href="#" class="block py-2 text-lg">CONTACT</a></li>
+                </ul>
+                
+                <!-- Mobile Contact Info -->
+                <div class="mt-8 pt-8 border-t border-indigo-700">
+                    <div class="space-y-3 text-sm text-gray-300">
+                        <div class="flex items-center space-x-2">
+                            <i class="ri-map-pin-line text-green-400"></i>
+                            <span>Putali Sadak 12, Kathmandu, Nepal</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="ri-phone-line text-green-400"></i>
+                            <span>9823270812</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="ri-mail-line text-green-400"></i>
+                            <span>info@manpowername.com.np</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Message From Chairman Section -->
+    <section class="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="container mx-auto px-6">
+            <!-- Main Content Grid -->
+            <div class="grid lg:grid-cols-2 gap-12 items-start mb-16">
+                <!-- Left Side - Chairman Profile Card -->
+                <div class="flex justify-center lg:justify-start">
+                    <div class="bg-white rounded-3xl p-8 shadow-2xl max-w-sm w-full relative overflow-hidden">
+                        <!-- Gradient Background -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 opacity-10"></div>
+                        
+                        <!-- Profile Content -->
+                        <div class="relative z-10 text-center">
+                            <!-- Profile Image -->
+                            <div class="mb-6">
+                                <div class="w-48 h-56 mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 p-1">
+                                    <div class="w-full h-full bg-white rounded-2xl overflow-hidden">
+                                        <img src="{% static 'Images/Assests/chairman.png' %}" 
+                                             alt="Ms. Prasamsha Shrestha" 
+                                             class="w-full h-full object-cover"
+                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="w-full h-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center hidden">
+                                            <i class="ri-user-line text-white text-6xl"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Name and Title -->
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Ms. Prasamsha Shrestha</h3>
+                            <p class="text-lg text-teal-600 font-semibold mb-1">Chairman & Founder</p>
+                            <p class="text-gray-600 text-sm mb-6">Rising Youths Overseas Pvt. Ltd.</p>
+                            
+                            <!-- Badges -->
+                            <div class="flex flex-wrap justify-center gap-2">
+                                <span class="px-4 py-2 bg-gradient-to-r from-teal-400 to-green-400 text-white text-sm font-medium rounded-full">
+                                    Visionary Leader
+                                </span>
+                                <span class="px-4 py-2 bg-gradient-to-r from-blue-400 to-purple-400 text-white text-sm font-medium rounded-full">
+                                    Industry Expert
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Quote and Message -->
+                <div class="space-y-8">
+                    <!-- Quote Section -->
+                    <div class="relative">
+                        <!-- Large Quote Mark -->
+                        <div class="text-8xl text-teal-400 font-serif leading-none mb-4">"</div>
+                        
+                        <!-- Quote Text -->
+                        <blockquote class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6 pl-4">
+                            At Rising Youths Overseas, we believe that every individual deserves the opportunity to pursue their dreams on a global stage. Our commitment goes beyond just placement – we nurture careers, build futures, and create lasting partnerships that benefit both our candidates and our international partners.
+                        </blockquote>
+                        
+                        <!-- Attribution -->
+                        <div class="text-right">
+                            <p class="text-teal-600 font-semibold text-lg">- Ms. Prasamsha Shrestha</p>
+                            <p class="text-gray-500 text-sm">Chairman & Founder</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vision and Commitment Cards -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Our Vision -->
+                <div class="bg-gradient-to-br from-teal-50 to-green-50 rounded-2xl p-8 border border-teal-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-teal-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="ri-eye-line text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Our Vision</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        To create pathways for our youth to flourish on the global stage while maintaining their cultural values and professional integrity.
+                    </p>
+                </div>
+                
+                <!-- Our Commitment -->
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="ri-heart-line text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Our Commitment</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Maintaining the highest standards of service, ensuring transparency, and providing comprehensive support throughout the employment journey.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Message from Leadership -->
+            <div class="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-blue-500 rounded-xl flex items-center justify-center mr-4">
+                        <i class="ri-team-line text-white text-xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">A Message from Leadership</h2>
+                </div>
+                
+                <div class="space-y-6 text-gray-700 leading-relaxed">
+                    <p class="text-lg">
+                        Since our establishment in 2025, Rising Youths Overseas has been dedicated to bridging the gap between talented Nepalese youth and international employment opportunities. We envision a world where geographical boundaries do not limit career aspirations.
+                    </p>
+                    
+                    <p>
+                        Our comprehensive approach includes skill development, cultural orientation, and ongoing support to ensure our candidates not only secure employment but excel in their chosen fields. We are proud of our team's dedication and the trust our clients place in us.
+                    </p>
+                    
+                    <p>
+                        As we continue to grow and expand our services, we remain committed to our core values of integrity, excellence, and genuine care for every individual we serve. Together, we are building bridges to brighter futures.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 md:py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="ri-plant-line text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg md:text-xl font-bold">RISING YOUTHS OVERSEAS PVT. LTD.</h3>
+                            <p class="text-sm text-green-400">Where Careers Blossom ✨</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Your trusted partner for overseas employment opportunities. We are committed to helping talented individuals find their dream careers abroad with professional excellence and personalized support.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="ri-linkedin-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Our Team</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Services</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Procedures</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Gallery</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Contact Info</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="ri-map-pin-line text-green-400 mt-1"></i>
+                            <div>
+                                <p class="text-gray-300">Putali Sadak 12</p>
+                                <p class="text-gray-300">Kathmandu, Nepal</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ri-phone-line text-green-400"></i>
+                            <p class="text-gray-300">+977 9823270812</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ri-mail-line text-green-400"></i>
+                            <p class="text-gray-300">info@manpowername.com.np</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ri-time-line text-green-400"></i>
+                            <div>
+                                <p class="text-gray-300">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                                <p class="text-gray-300">Sat: 10:00 AM - 4:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-700 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © 2025 Rising Youths Overseas Pvt. Ltd. All rights reserved.
+                    </p>
+                    <div class="flex flex-wrap justify-center space-x-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">License & Chart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'Base/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,694 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rising Youths Overseas Pvt. Ltd.</title>
+    <link rel="shortcut icon" href="{% static 'Images/Logo/logo.png' %}" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+     <link rel="stylesheet" href="{% static 'Base/style.css' %}">
+</head>
+<body class="font-sans">
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white py-3 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo and Company Name -->
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-full overflow-hidden bg-green-500 flex items-center justify-center">
+                    <img src="{% static 'Images/Logo/logo.png' %}" 
+                         alt="Rising Youths Logo" 
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <i class="ri-plant-line text-white text-xl hidden"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold">RISING YOUTHS OVERSEAS PVT. LTD.</h1>
+                    <p class="text-xs md:text-sm text-green-400">Where Careers Blossom ✨</p>
+                </div>
+            </div>
+            
+            <!-- Contact Information - Hidden on mobile -->
+            <div class="hidden lg:flex items-center space-x-6">
+                <div class="flex items-center space-x-2">
+                    <i class="ri-map-pin-line text-green-400"></i>
+                    <span class="text-sm">Putali Sadak 12, Kathmandu, Nepal</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="ri-phone-line text-green-400"></i>
+                    <span class="text-sm">9823270812</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="ri-mail-line text-green-400"></i>
+                    <span class="text-sm">info@manpowername.com.np</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-gradient py-4">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <!-- Desktop Navigation -->
+                <ul class="hidden md:flex justify-center space-x-4 lg:space-x-8 text-white font-medium flex-1">
+                    <li><a href="{% url "main_home_page_view" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">HOME</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="hover:text-yellow-200 transition-colors flex items-center text-sm lg:text-base">
+                            WHO WE ARE
+                            <i class="ri-arrow-down-s-line ml-1"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="{% url "chairman_message_view" %}">MESSAGE FROM CHAIRMAN</a>
+                            <a href="{% url "about_us_view" %}">ABOUT US</a>
+                            <a href="{% url "our_team_view" %}">OUR TEAM</a>
+                            <a href="{% url "license_and_certificates_view" %}">LICENSE & CERTIFICATES</a>
+                            <a href="{% url "organizational_chart_view" %}">ORGANIZATIONAL CHART</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="hover:text-yellow-200 transition-colors flex items-center text-sm lg:text-base">
+                            WHAT WE DO
+                            <i class="ri-arrow-down-s-line ml-1"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#">CONSULTING</a>
+                            <a href="#">TRAINING & ORIENTATION</a>
+                            <a href="#">TRAVEL MANAGEMENT</a>
+                            <a href="#">HUMAN RESOURCES</a>
+                        </div>
+                    </li>
+                    <li><a href="#" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">PROCEDURES</a></li>
+                    <li><a href="#" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">GALLERY</a></li>
+                    <li><a href="#" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">BLOG</a></li>
+                    <li><a href="{% url "contact_us_view" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">CONTACT</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                    <i class="ri-menu-line"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-0 left-0 w-full h-full bg-indigo-900 z-50">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-8">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="ri-plant-line text-white text-lg"></i>
+                        </div>
+                        <span class="text-white font-bold">RISING YOUTHS</span>
+                    </div>
+                    <button id="mobile-menu-close" class="text-white text-2xl">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+                
+                <ul class="space-y-4 text-white">
+                    <li><a href="{% url "main_home_page_view" %}" class="block py-2 text-lg">HOME</a></li>
+                    <li>
+                        <details class="group">
+                            <summary class="flex items-center justify-between py-2 text-lg cursor-pointer">
+                                WHO WE ARE
+                                <i class="ri-arrow-down-s-line group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <ul class="ml-4 mt-2 space-y-2">
+                                <li><a href="{% url "chairman_message_view" %}" class="block py-1 text-gray-300">MESSAGE FROM CHAIRMAN</a></li>
+                                <li><a href="{% url "about_us_view" %}" class="block py-1 text-gray-300">ABOUT US</a></li>
+                                <li><a href="{% url "our_team_view" %}" class="block py-1 text-gray-300">OUR TEAM</a></li>
+                                <li><a href="{% url "license_and_certificates_view" %}" class="block py-1 text-gray-300">LICENSE & CERTIFICATES</a></li>
+                                <li><a href="{% url "organizational_chart_view" %}" class="block py-1 text-gray-300">ORGANIZATIONAL CHART</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="group">
+                            <summary class="flex items-center justify-between py-2 text-lg cursor-pointer">
+                                WHAT WE DO
+                                <i class="ri-arrow-down-s-line group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <ul class="ml-4 mt-2 space-y-2">
+                                <li><a href="#" class="block py-1 text-gray-300">CONSULTING</a></li>
+                                <li><a href="#" class="block py-1 text-gray-300">TRAINING & ORIENTATION</a></li>
+                                <li><a href="#" class="block py-1 text-gray-300">TRAVEL MANAGEMENT</a></li>
+                                <li><a href="#" class="block py-1 text-gray-300">HUMAN RESOURCES</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li><a href="#" class="block py-2 text-lg">PROCEDURES</a></li>
+                    <li><a href="#" class="block py-2 text-lg">GALLERY</a></li>
+                    <li><a href="#" class="block py-2 text-lg">BLOG</a></li>
+                    <li><a href="{% url "contact_us_view" %}" class="block py-2 text-lg">CONTACT</a></li>
+                </ul>
+                
+                <!-- Mobile Contact Info -->
+                <div class="mt-8 pt-8 border-t border-indigo-700">
+                    <div class="space-y-3 text-sm text-gray-300">
+                        <div class="flex items-center space-x-2">
+                            <i class="ri-map-pin-line text-green-400"></i>
+                            <span>Putali Sadak 12, Kathmandu, Nepal</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="ri-phone-line text-green-400"></i>
+                            <span>9823270812</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="ri-mail-line text-green-400"></i>
+                            <span>info@manpowername.com.np</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen bg-cover bg-center" style="background-image: url('{% static 'Images/Assests/WholeNation.png' %}">
+        <div class="hero-overlay absolute inset-0"></div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 flex items-center justify-center h-full text-center text-white px-6">
+            <div class="max-w-4xl">
+                <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold mb-6">
+                    Where Careers <span class="text-green-400">Blossom</span>
+                </h1>
+                <p class="text-lg md:text-xl lg:text-2xl mb-8 md:mb-12 text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                    Your trusted partner for overseas employment opportunities. We help talented individuals find their dream careers abroad.
+                </p>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="bg-green-500 hover:bg-green-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all duration-300 flex items-center group">
+                        Get Started
+                        <i class="ri-arrow-right-line ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                    <button class="bg-red-500 hover:bg-red-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all duration-300">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+            <div class="flex space-x-3">
+                <div class="w-3 h-3 bg-white rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-16 right-4 md:right-8 text-white text-sm z-10">
+            <div class="flex items-center space-x-2">
+                <span class="hidden md:block">Scroll</span>
+                <i class="ri-mouse-line"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Serve Section -->
+    <section class="bg-gray-50 py-12 md:py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
+                <!-- Left Side - Title and Description -->
+                <div class="text-center lg:text-left">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+                        What We <span class="text-green-500">Serve</span>
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
+                        Comprehensive solutions designed to elevate your international career journey with professional excellence.
+                    </p>
+                </div>
+                
+                <!-- Right Side - Service Cards -->
+                <div class="space-y-6">
+                    <!-- Consulting Services -->
+                    <div class="bg-gray-800 rounded-2xl p-6 text-white">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="ri-chat-3-line text-white text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold mb-3">Consulting Services</h3>
+                                <p class="text-gray-300 mb-4 leading-relaxed">
+                                    Expert guidance for your overseas career journey with personalized consultation and strategic planning.
+                                </p>
+                                <a href="#" class="text-green-400 hover:text-green-300 transition-colors flex items-center">
+                                    Learn More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Training & Orientation -->
+                    <div class="bg-gray-800 rounded-2xl p-6 text-white">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="ri-graduation-cap-line text-white text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold mb-3">Training & Orientation</h3>
+                                <p class="text-gray-300 mb-4 leading-relaxed">
+                                    Comprehensive preparation for international work environments with cultural and technical training.
+                                </p>
+                                <a href="#" class="text-green-400 hover:text-green-300 transition-colors flex items-center">
+                                    Learn More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Travel Management -->
+                    <div class="bg-gray-800 rounded-2xl p-6 text-white">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="ri-plane-line text-white text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold mb-3">Travel Management</h3>
+                                <p class="text-gray-300 mb-4 leading-relaxed">
+                                    Complete travel arrangements and documentation support for seamless international transitions.
+                                </p>
+                                <a href="#" class="text-green-400 hover:text-green-300 transition-colors flex items-center">
+                                    Learn More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Human Resources -->
+                    <div class="bg-gray-800 rounded-2xl p-6 text-white">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="ri-team-line text-white text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold mb-3">Human Resources</h3>
+                                <p class="text-gray-300 mb-4 leading-relaxed">
+                                    Professional HR services connecting skilled talent with global employment opportunities.
+                                </p>
+                                <a href="#" class="text-green-400 hover:text-green-300 transition-colors flex items-center">
+                                    Learn More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News and Blogs Section -->
+    <section class="py-12 md:py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+                    NEWS & <span class="text-red-500">BLOG</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
+                    Stay updated with the latest developments, opportunities, success stories, and expert insights from Rising Youths Overseas.
+                </p>
+            </div>
+            
+            <!-- Scrolling News Cards Container -->
+            <div class="relative">
+                <!-- Navigation Arrows -->
+                <button id="scroll-left" class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <i class="ri-arrow-left-line text-gray-600 text-lg md:text-xl"></i>
+                </button>
+                <button id="scroll-right" class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <i class="ri-arrow-right-line text-gray-600 text-lg md:text-xl"></i>
+                </button>
+                
+                <!-- Auto-scrolling Cards -->
+                <div class="news-scroll-container">
+                    <div class="news-track">
+                        <!-- Card 1 -->
+                        <div class="w-72 md:w-80 bg-gradient-to-br from-purple-600 to-blue-700 rounded-2xl text-white relative overflow-hidden flex-shrink-0 mr-6">
+                            <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80');"></div>
+                            <div class="p-6">
+                                <div class="absolute top-4 right-4">
+                                    <i class="ri-external-link-line text-white opacity-70"></i>
+                                </div>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="bg-purple-500 px-3 py-1 rounded-full text-xs font-semibold">Career Advice</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-purple-200 mb-3">
+                                    <div class="flex items-center space-x-4">
+                                        <span>January 02</span>
+                                        <span>Rajesh Sharma</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Top 10 Tips for Successful Overseas Employment</h3>
+                                <p class="text-purple-200 text-sm mb-4">Essential advice for professionals seeking international career opportunities and how to prepare for success abroad.</p>
+                                <a href="#" class="text-purple-300 hover:text-white transition-colors flex items-center">
+                                    Read More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 2 -->
+                        <div class="w-72 md:w-80 bg-gradient-to-br from-red-500 to-orange-600 rounded-2xl text-white relative overflow-hidden flex-shrink-0 mr-6">
+                            <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80');"></div>
+                            <div class="p-6">
+                                <div class="absolute top-4 right-4">
+                                    <i class="ri-external-link-line text-white opacity-70"></i>
+                                </div>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="bg-red-500 px-3 py-1 rounded-full text-xs font-semibold">NEWS</span>
+                                    <span class="bg-orange-500 px-3 py-1 rounded-full text-xs font-semibold">Opportunities</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-red-200 mb-3">
+                                    <div class="flex items-center space-x-4">
+                                        <span>January 10, 2025</span>
+                                        <span>Rising Youths Team</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Qatar World Cup Legacy Projects Create New Opportunities</h3>
+                                <p class="text-red-200 text-sm mb-4">Post-World Cup infrastructure development in Qatar continues to offer excellent opportunities for construction workers, engineers, and skilled professionals.</p>
+                                <a href="#" class="text-red-300 hover:text-white transition-colors flex items-center">
+                                    Read More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 3 -->
+                        <div class="w-72 md:w-80 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl text-white relative overflow-hidden flex-shrink-0 mr-6">
+                            <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80');"></div>
+                            <div class="p-6">
+                                <div class="absolute top-4 right-4">
+                                    <i class="ri-external-link-line text-white opacity-70"></i>
+                                </div>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="bg-indigo-500 px-3 py-1 rounded-full text-xs font-semibold">BLOG</span>
+                                    <span class="bg-purple-500 px-3 py-1 rounded-full text-xs font-semibold">Visa Guide</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-indigo-200 mb-3">
+                                    <div class="flex items-center space-x-4">
+                                        <span>January 8, 2025</span>
+                                        <span>Priya Thapa</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Understanding Work Visa Requirements for Gulf Countries</h3>
+                                <p class="text-indigo-200 text-sm mb-4">A comprehensive guide to visa requirements, documentation, and processes for working in UAE, Qatar, Saudi Arabia, and other Gulf nations.</p>
+                                <a href="#" class="text-indigo-300 hover:text-white transition-colors flex items-center">
+                                    Read More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 4 -->
+                        <div class="w-72 md:w-80 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl text-white relative overflow-hidden flex-shrink-0 mr-6">
+                            <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80');"></div>
+                            <div class="p-6">
+                                <div class="absolute top-4 right-4">
+                                    <i class="ri-external-link-line text-white opacity-70"></i>
+                                </div>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="bg-red-500 px-3 py-1 rounded-full text-xs font-semibold">NEWS</span>
+                                    <span class="bg-blue-500 px-3 py-1 rounded-full text-xs font-semibold">Training</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-blue-200 mb-3">
+                                    <div class="flex items-center space-x-4">
+                                        <span>January 5, 2025</span>
+                                        <span>Rising Youths Team</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Enhanced Pre-Departure Training Program Launched</h3>
+                                <p class="text-blue-200 text-sm mb-4">Our new comprehensive training program includes advanced language courses, cultural orientation, and technical skills development for overseas workers.</p>
+                                <a href="#" class="text-blue-300 hover:text-white transition-colors flex items-center">
+                                    Read More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 5 -->
+                        <div class="w-72 md:w-80 bg-gradient-to-br from-green-600 to-teal-700 rounded-2xl text-white relative overflow-hidden flex-shrink-0 mr-6">
+                            <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80');"></div>
+                            <div class="p-6">
+                                <div class="absolute top-4 right-4">
+                                    <i class="ri-external-link-line text-white opacity-70"></i>
+                                </div>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="bg-green-500 px-3 py-1 rounded-full text-xs font-semibold">SUCCESS</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-green-200 mb-3">
+                                    <div class="flex items-center space-x-4">
+                                        <span>January 3, 2025</span>
+                                        <span>Success Story</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">From Nepal to Dubai: A Software Engineer's Journey</h3>
+                                <p class="text-green-200 text-sm mb-4">Follow Amit's inspiring journey from Kathmandu to becoming a senior software engineer at a leading tech company in Dubai.</p>
+                                <a href="#" class="text-green-300 hover:text-white transition-colors flex items-center">
+                                    Read More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Duplicate cards for seamless loop -->
+                        <!-- Card 1 (Duplicate) -->
+                        <div class="w-72 md:w-80 bg-gradient-to-br from-purple-600 to-blue-700 rounded-2xl text-white relative overflow-hidden flex-shrink-0 mr-6">
+                            <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80');"></div>
+                            <div class="p-6">
+                                <div class="absolute top-4 right-4">
+                                    <i class="ri-external-link-line text-white opacity-70"></i>
+                                </div>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="bg-purple-500 px-3 py-1 rounded-full text-xs font-semibold">Career Advice</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-purple-200 mb-3">
+                                    <div class="flex items-center space-x-4">
+                                        <span>January 02</span>
+                                        <span>Rajesh Sharma</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Top 10 Tips for Successful Overseas Employment</h3>
+                                <p class="text-purple-200 text-sm mb-4">Essential advice for professionals seeking international career opportunities and how to prepare for success abroad.</p>
+                                <a href="#" class="text-purple-300 hover:text-white transition-colors flex items-center">
+                                    Read More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 2 (Duplicate) -->
+                        <div class="w-72 md:w-80 bg-gradient-to-br from-red-500 to-orange-600 rounded-2xl text-white relative overflow-hidden flex-shrink-0 mr-6">
+                            <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80');"></div>
+                            <div class="p-6">
+                                <div class="absolute top-4 right-4">
+                                    <i class="ri-external-link-line text-white opacity-70"></i>
+                                </div>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="bg-red-500 px-3 py-1 rounded-full text-xs font-semibold">NEWS</span>
+                                    <span class="bg-orange-500 px-3 py-1 rounded-full text-xs font-semibold">Opportunities</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-red-200 mb-3">
+                                    <div class="flex items-center space-x-4">
+                                        <span>January 10, 2025</span>
+                                        <span>Rising Youths Team</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Qatar World Cup Legacy Projects Create New Opportunities</h3>
+                                <p class="text-red-200 text-sm mb-4">Post-World Cup infrastructure development in Qatar continues to offer excellent opportunities for construction workers, engineers, and skilled professionals.</p>
+                                <a href="#" class="text-red-300 hover:text-white transition-colors flex items-center">
+                                    Read More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 3 (Duplicate) -->
+                        <div class="w-72 md:w-80 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl text-white relative overflow-hidden flex-shrink-0 mr-6">
+                            <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80');"></div>
+                            <div class="p-6">
+                                <div class="absolute top-4 right-4">
+                                    <i class="ri-external-link-line text-white opacity-70"></i>
+                                </div>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="bg-indigo-500 px-3 py-1 rounded-full text-xs font-semibold">BLOG</span>
+                                    <span class="bg-purple-500 px-3 py-1 rounded-full text-xs font-semibold">Visa Guide</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-indigo-200 mb-3">
+                                    <div class="flex items-center space-x-4">
+                                        <span>January 8, 2025</span>
+                                        <span>Priya Thapa</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Understanding Work Visa Requirements for Gulf Countries</h3>
+                                <p class="text-indigo-200 text-sm mb-4">A comprehensive guide to visa requirements, documentation, and processes for working in UAE, Qatar, Saudi Arabia, and other Gulf nations.</p>
+                                <a href="#" class="text-indigo-300 hover:text-white transition-colors flex items-center">
+                                    Read More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 4 (Duplicate) -->
+                        <div class="w-72 md:w-80 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl text-white relative overflow-hidden flex-shrink-0 mr-6">
+                            <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80');"></div>
+                            <div class="p-6">
+                                <div class="absolute top-4 right-4">
+                                    <i class="ri-external-link-line text-white opacity-70"></i>
+                                </div>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="bg-red-500 px-3 py-1 rounded-full text-xs font-semibold">NEWS</span>
+                                    <span class="bg-blue-500 px-3 py-1 rounded-full text-xs font-semibold">Training</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-blue-200 mb-3">
+                                    <div class="flex items-center space-x-4">
+                                        <span>January 5, 2025</span>
+                                        <span>Rising Youths Team</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Enhanced Pre-Departure Training Program Launched</h3>
+                                <p class="text-blue-200 text-sm mb-4">Our new comprehensive training program includes advanced language courses, cultural orientation, and technical skills development for overseas workers.</p>
+                                <a href="#" class="text-blue-300 hover:text-white transition-colors flex items-center">
+                                    Read More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 5 (Duplicate) -->
+                        <div class="w-72 md:w-80 bg-gradient-to-br from-green-600 to-teal-700 rounded-2xl text-white relative overflow-hidden flex-shrink-0 mr-6">
+                            <div class="h-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80');"></div>
+                            <div class="p-6">
+                                <div class="absolute top-4 right-4">
+                                    <i class="ri-external-link-line text-white opacity-70"></i>
+                                </div>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="bg-green-500 px-3 py-1 rounded-full text-xs font-semibold">SUCCESS</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-green-200 mb-3">
+                                    <div class="flex items-center space-x-4">
+                                        <span>January 3, 2025</span>
+                                        <span>Success Story</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">From Nepal to Dubai: A Software Engineer's Journey</h3>
+                                <p class="text-green-200 text-sm mb-4">Follow Amit's inspiring journey from Kathmandu to becoming a senior software engineer at a leading tech company in Dubai.</p>
+                                <a href="#" class="text-green-300 hover:text-white transition-colors flex items-center">
+                                    Read More <i class="ri-arrow-right-line ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View All Button -->
+            <div class="text-center mt-8 md:mt-12">
+                <a href="#" class="bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center">
+                    View All News & Blog
+                    <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+     <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 md:py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="ri-plant-line text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg md:text-xl font-bold">RISING YOUTHS OVERSEAS PVT. LTD.</h3>
+                            <p class="text-sm text-green-400">Where Careers Blossom ✨</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Your trusted partner for overseas employment opportunities. We are committed to helping talented individuals find their dream careers abroad with professional excellence and personalized support.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="ri-linkedin-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Our Team</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Services</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Procedures</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Gallery</a></li>
+                        <li><a href="{% url "contact_us_view" %}" class="text-gray-300 hover:text-green-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Contact Info</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="ri-map-pin-line text-green-400 mt-1"></i>
+                            <div>
+                                <p class="text-gray-300">Putali Sadak 12</p>
+                                <p class="text-gray-300">Kathmandu, Nepal</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ri-phone-line text-green-400"></i>
+                            <p class="text-gray-300">+977 9823270812</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ri-mail-line text-green-400"></i>
+                            <p class="text-gray-300">info@manpowername.com.np</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ri-time-line text-green-400"></i>
+                            <div>
+                                <p class="text-gray-300">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                                <p class="text-gray-300">Sat: 10:00 AM - 4:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-700 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © 2025 Rising Youths Overseas Pvt. Ltd. All rights reserved.
+                    </p>
+                    <div class="flex flex-wrap justify-center space-x-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">License & Chart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'Base/script.js' %}"></script>
+</body>
+</html>
