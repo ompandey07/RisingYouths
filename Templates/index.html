@@ -8,17 +8,16 @@
     <link rel="shortcut icon" href="{% static 'Images/Logo/logo.png' %}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-     <link rel="stylesheet" href="{% static 'Base/style.css' %}">
+    <link rel="stylesheet" href="{% static 'Base/style.css' %}">
 </head>
 <body class="font-sans">
-
 
     <!-- Header -->
    <header class="bg-indigo-900 text-white py-3 px-6">
        <div class="container mx-auto flex justify-between items-center">
              <!-- Logo and Company Name -->
              <div class="flex items-center space-x-3">
-                 <div class="w-12 h-12 rounded-full overflow-hidden bg-green-500 flex items-center justify-center">
+                 <div class="w-12 h-12 rounded-full overflow-hidden bg-green-500 flex items-center justify-center pulse-icon">
                      <img src="{% static 'Images/Logo/logo.png' %}" 
                           alt="Rising Youths Logo" 
                           class="w-full h-full object-cover"
@@ -47,13 +46,12 @@
                  </div>
      
                  <!-- User Icon Link -->
-                 <a href="{% url "login_view" %}" class="text-green-400 hover:text-white text-lg">
+                 <a href="{% url "login_view" %}" class="text-green-400 hover:text-white text-lg glow-effect rotate-hover">
                      <i class="ri-user-line"></i>
                  </a>
              </div>
             </div>
     </header>
-
 
     <!-- Navigation -->
     <nav class="nav-gradient py-4">
@@ -94,7 +92,7 @@
                 </ul>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl bounce-click">
                     <i class="ri-menu-line"></i>
                 </button>
             </div>
@@ -110,7 +108,7 @@
                         </div>
                         <span class="text-white font-bold">RISING YOUTHS</span>
                     </div>
-                    <button id="mobile-menu-close" class="text-white text-2xl">
+                    <button id="mobile-menu-close" class="text-white text-2xl bounce-click">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
@@ -173,27 +171,45 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative h-screen bg-cover bg-center" style="background-image: url('{% static 'Images/Assests/WholeNation.png' %}">
-        <div class="hero-overlay absolute inset-0"></div>
+    <!-- Hero Section with Carousel -->
+    <section class="relative h-screen hero-slider">
+        <!-- Slide 1 -->
+        <div class="hero-slide active" style="background-image: url('{% static 'Images/Assests/WholeNation.png' %}')">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        
+        <!-- Slide 2 -->
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1473625247510-8ceb1760943f?q=80&w=1411&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1535966953907-e3a81e258148?q=80&w=1421&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        
+        <!-- Slide 4 -->
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1574093475418-98773286cecf?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
         
         <!-- Hero Content -->
         <div class="relative z-10 flex items-center justify-center h-full text-center text-white px-6">
             <div class="max-w-4xl">
-                <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold mb-6">
-                    Where Careers <span class="text-green-400">Blossom</span>
+                <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold mb-6 hero-title-animate opacity-0">
+                    Where Careers <span class="gradient-text">Blossom</span>
                 </h1>
-                <p class="text-lg md:text-xl lg:text-2xl mb-8 md:mb-12 text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                <p class="text-lg md:text-xl lg:text-2xl mb-8 md:mb-12 text-gray-200 max-w-3xl mx-auto leading-relaxed hero-description-animate opacity-0">
                     Your trusted partner for overseas employment opportunities. We help talented individuals find their dream careers abroad.
                 </p>
                 
                 <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button class="bg-green-500 hover:bg-green-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all duration-300 flex items-center group">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center hero-buttons-animate opacity-0">
+                    <button class="bg-green-500 hover:bg-green-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all duration-300 flex items-center group hero-button-glow bounce-click">
                         Get Started
                         <i class="ri-arrow-right-line ml-2 group-hover:translate-x-1 transition-transform"></i>
                     </button>
-                    <button class="bg-red-500 hover:bg-red-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all duration-300">
+                    <button class="bg-red-500 hover:bg-red-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all duration-300 hero-button-glow bounce-click">
                         Learn More
                     </button>
                 </div>
@@ -201,26 +217,17 @@
         </div>
 
         <!-- Navigation Dots -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 hero-dots-animate opacity-0">
             <div class="flex space-x-3">
-                <div class="w-3 h-3 bg-white rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
-                <div class="w-3 h-3 bg-white/50 rounded-full"></div>
+                <div class="nav-dot w-3 h-3 bg-white rounded-full active" data-slide="0"></div>
+                <div class="nav-dot w-3 h-3 bg-white/50 rounded-full" data-slide="1"></div>
+                <div class="nav-dot w-3 h-3 bg-white/50 rounded-full" data-slide="2"></div>
+                <div class="nav-dot w-3 h-3 bg-white/50 rounded-full" data-slide="3"></div>
             </div>
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-16 right-4 md:right-8 text-white text-sm z-10">
+        <div class="absolute bottom-16 right-4 md:right-8 text-white text-sm z-10 hero-scroll-animate opacity-0">
             <div class="flex items-center space-x-2">
                 <span class="hidden md:block">Scroll</span>
                 <i class="ri-mouse-line"></i>
@@ -229,13 +236,13 @@
     </section>
 
     <!-- What We Serve Section -->
-    <section class="bg-gray-50 py-12 md:py-20">
+    <section class="bg-gray-50 py-12 md:py-20" id="services-section">
         <div class="container mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
                 <!-- Left Side - Title and Description -->
-                <div class="text-center lg:text-left">
+                <div class="text-center lg:text-left fade-in-left">
                     <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
-                        What We <span class="text-green-500">Serve</span>
+                        What We <span class="gradient-text">Serve</span>
                     </h2>
                     <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
                         Comprehensive solutions designed to elevate your international career journey with professional excellence.
@@ -243,11 +250,11 @@
                 </div>
                 
                 <!-- Right Side - Service Cards -->
-                <div class="space-y-6">
+                <div class="space-y-6 fade-in-right">
                     <!-- Consulting Services -->
-                    <div class="bg-gray-800 rounded-2xl p-6 text-white">
+                    <div class="bg-gray-800 rounded-2xl p-6 text-white service-card stagger-1">
                         <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0 float-element">
                                 <i class="ri-chat-3-line text-white text-xl"></i>
                             </div>
                             <div class="flex-1">
@@ -263,9 +270,9 @@
                     </div>
                     
                     <!-- Training & Orientation -->
-                    <div class="bg-gray-800 rounded-2xl p-6 text-white">
+                    <div class="bg-gray-800 rounded-2xl p-6 text-white service-card stagger-2">
                         <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0 float-element">
                                 <i class="ri-graduation-cap-line text-white text-xl"></i>
                             </div>
                             <div class="flex-1">
@@ -281,9 +288,9 @@
                     </div>
                     
                     <!-- Travel Management -->
-                    <div class="bg-gray-800 rounded-2xl p-6 text-white">
+                    <div class="bg-gray-800 rounded-2xl p-6 text-white service-card stagger-3">
                         <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0 float-element">
                                 <i class="ri-plane-line text-white text-xl"></i>
                             </div>
                             <div class="flex-1">
@@ -299,9 +306,9 @@
                     </div>
                     
                     <!-- Human Resources -->
-                    <div class="bg-gray-800 rounded-2xl p-6 text-white">
+                    <div class="bg-gray-800 rounded-2xl p-6 text-white service-card stagger-4">
                         <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0 float-element">
                                 <i class="ri-team-line text-white text-xl"></i>
                             </div>
                             <div class="flex-1">
@@ -321,67 +328,71 @@
     </section>
 
     <!-- Latest News and Blogs Section -->
-    <!-- Latest News and Blogs Section -->
-<section class="py-12 md:py-20 bg-white">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-12 md:mb-16">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
-                NEWS & <span class="text-red-500">BLOG</span>
-            </h2>
-            <p class="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
-                Stay updated with the latest developments, opportunities, success stories, and expert insights from Rising Youths Overseas.
-            </p>
-        </div>
-        
-        <!-- Simple Blog Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {% for blog in blogs %}
-                <div class="bg-gradient-to-br from-purple-600 to-blue-700 rounded-2xl text-white relative overflow-hidden">
-                    <div class="h-40 bg-cover bg-center" style="background-image: url('{% if blog.image %}{{ blog.image.url }}{% else %}https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80{% endif %}');"></div>
-                    <div class="p-6">
-                        <div class="absolute top-4 right-4">
-                            <i class="ri-external-link-line text-white opacity-70"></i>
-                        </div>
-                        <div class="flex items-center space-x-2 mb-4">
-                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs font-semibold">{{ blog.get_category_display }}</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm opacity-80 mb-3">
-                            <div class="flex items-center space-x-4">
-                                <span>{{ blog.created_at|date:"M d" }}</span>
-                                <span>{{ blog.author.username }}</span>
+    <section class="py-12 md:py-20 bg-white" id="blog-section">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 md:mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+                    NEWS & <span class="gradient-text">BLOG</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
+                    Stay updated with the latest developments, opportunities, success stories, and expert insights from Rising Youths Overseas.
+                </p>
+            </div>
+            
+            <!-- Simple Blog Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                {% for blog in blogs %}
+                    <div class="bg-gradient-to-br from-purple-600 to-blue-700 rounded-2xl text-white relative overflow-hidden blog-card scale-in stagger-{{ forloop.counter }}">
+                        <div class="h-40 bg-cover bg-center" style="background-image: url('{% if blog.image %}{{ blog.image.url }}{% else %}https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=160&q=80{% endif %}');"></div>
+                        <div class="p-6">
+                            <div class="absolute top-4 right-4">
+                                <i class="ri-external-link-line text-white opacity-70 pulse-icon"></i>
                             </div>
+                            <div class="flex items-center space-x-2 mb-4">
+                                <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs font-semibold">{{ blog.get_category_display }}</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm opacity-80 mb-3">
+                                <div class="flex items-center space-x-4">
+                                    <span>{{ blog.created_at|date:"M d" }}</span>
+                                    <span>{{ blog.author.username }}</span>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">{{ blog.title }}</h3>
+                            <p class="opacity-80 text-sm mb-4">
+                                {% if blog.content %}
+                                    {{ blog.content|striptags|truncatechars:100 }}
+                                {% else %}
+                                    Read more about this exciting update...
+                                {% endif %}
+                            </p>
+                            <a href="{% url 'blog_detail' blog.id %}" class="opacity-80 hover:opacity-100 transition-colors flex items-center">
+                                Read More <i class="ri-arrow-right-line ml-2"></i>
+                            </a>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">{{ blog.title }}</h3>
-                        <p class="opacity-80 text-sm mb-4">
-                            {% if blog.content %}
-                                {{ blog.content|striptags|truncatechars:100 }}
-                            {% else %}
-                                Read more about this exciting update...
-                            {% endif %}
-                        </p>
-                        <a href="{% url 'blog_detail' blog.id %}" class="opacity-80 hover:opacity-100 transition-colors flex items-center">
-                            Read More <i class="ri-arrow-right-line ml-2"></i>
-                        </a>
                     </div>
-                </div>
-            {% empty %}
-                <div class="col-span-full text-center py-16">
-                    <i class="ri-article-line text-6xl text-gray-300 mb-4"></i>
-                    <h3 class="text-2xl font-bold text-gray-600 mb-2">No Blog Posts Yet</h3>
-                    <p class="text-gray-500">Check back soon for the latest updates!</p>
-                </div>
-            {% endfor %}
+                {% empty %}
+                    <div class="col-span-full text-center py-16 fade-in-up">
+                        <i class="ri-article-line text-6xl text-gray-300 mb-4 float-element"></i>
+                        <h3 class="text-2xl font-bold text-gray-600 mb-2">No Blog Posts Yet</h3>
+                        <p class="text-gray-500">Check back soon for the latest updates!</p>
+                        <div class="loading-dots mt-4">
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <!-- View All Button -->
+            <div class="text-center fade-in-up">
+                <a href="{% url "blog_list" %}" class="bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center hero-button-glow bounce-click glow-effect">
+                    View All News & Blog
+                    <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+            </div>
         </div>
-        
-        <!-- View All Button -->
-        <div class="text-center">
-            <a href="{% url "blog_list" %}" class="bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center">
-                View All News & Blog
-                <i class="ri-arrow-right-line ml-2"></i>
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
 
      <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12 md:py-16">
@@ -390,7 +401,7 @@
                 <!-- Company Info -->
                 <div class="lg:col-span-2">
                     <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center pulse-icon">
                             <i class="ri-plant-line text-white text-xl"></i>
                         </div>
                         <div>
@@ -402,16 +413,16 @@
                         Your trusted partner for overseas employment opportunities. We are committed to helping talented individuals find their dream careers abroad with professional excellence and personalized support.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors glow-effect">
                             <i class="ri-facebook-fill"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors glow-effect">
                             <i class="ri-twitter-fill"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors glow-effect">
                             <i class="ri-linkedin-fill"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors glow-effect">
                             <i class="ri-instagram-fill"></i>
                         </a>
                     </div>
@@ -475,6 +486,7 @@
             </div>
         </div>
     </footer>
+
     <script src="{% static 'Base/script.js' %}"></script>
 </body>
 </html>
