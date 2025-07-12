@@ -12,7 +12,16 @@ urlpatterns = [
     path('our-team/', views.our_team_view, name='our_team_view'),
     path('license-and-certificates/', views.license_and_certificates_view, name='license_and_certificates_view'),
     path('organizational-chart/', views.organizational_chart_view, name='organizational_chart_view'),
-    
+    path('procedures/', views.procedures_view, name='procedures_view'),    
+    path('gallery/', views.gallery_view, name='gallery_view'),
+    path('consulting/', views.consulting_view, name='consulting_view'),
+    path('training/', views.traning_and_orientation_view, name='traning_and_orientation_view'),
+    path('travel/', views.travel_management_view, name='travel_management_view'),
+    path('human-resources/', views.human_resources_view, name='human_resources_view'),
+
+
+
+
     
 ]
 

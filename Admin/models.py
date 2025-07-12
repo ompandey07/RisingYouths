@@ -29,3 +29,27 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return f"{self.title} by {self.author.username}"
+    
+
+
+class GalleryCategory(models.TextChoices):
+    EVENTS = 'Events', 'Events'
+    MEETINGS = 'Meetings', 'Meetings'
+    FESTIVALS = 'Festivals', 'Festivals'
+    SUCCESS_STORIES = 'Success Stories', 'Success Stories'
+    TRAININGS = 'Trainings', 'Trainings'
+    COMMUNITY_WORK = 'Community Work', 'Community Work'
+    OTHERS = 'Others', 'Others'
+
+class ManpowerGallery(models.Model):
+    category = models.CharField(
+        max_length=50,
+        choices=GalleryCategory.choices,
+        default=GalleryCategory.OTHERS
+    )
+    title = models.CharField(max_length=200, null=True, blank=True)
+    gallery_image = models.ImageField(upload_to='Gallery_images/')
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.category} - {self.created_at.strftime('%Y-%m-%d')}"

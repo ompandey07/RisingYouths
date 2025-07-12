@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from Admin.models import BlogPost
+from Admin.models import BlogPost , ManpowerGallery
 
 # Create your views here.
 
@@ -52,3 +52,53 @@ def organizational_chart_view(request):
     Render the organizational chart page.
     """
     return render(request, 'Components/organizational_chart.html')
+
+
+
+
+def procedures_view(request):
+    """
+    Render the procedures page.
+    """
+    return render(request, 'Components/procedures.html')
+
+
+
+def gallery_view(request):
+    """
+    Render the gallery page.
+    """
+    gallery_images = ManpowerGallery.objects.all().order_by('-created_at')
+    return render(request, 'Components/gallery.html' , {'gallery_images': gallery_images})
+
+
+
+def consulting_view(request):
+    """
+    Render the consulting page.
+    """
+    return render(request, 'Components/consulting.html')
+
+
+def traning_and_orientation_view(request):
+    """
+    Render the training and orientation page.
+    """
+    return render(request, 'Components/training_and_orientation.html')
+
+
+
+
+def travel_management_view(request):
+    """
+    Render the travel management page.
+    """
+    return render(request, 'Components/travel_management.html')
+
+
+
+def human_resources_view(request):
+    """
+    Render the human resources page.
+    """
+    return render(request, 'Components/human_resources.html')
