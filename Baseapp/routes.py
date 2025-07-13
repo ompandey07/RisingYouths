@@ -18,6 +18,7 @@ urlpatterns = [
     path('training/', views.traning_and_orientation_view, name='traning_and_orientation_view'),
     path('travel/', views.travel_management_view, name='travel_management_view'),
     path('human-resources/', views.human_resources_view, name='human_resources_view'),
+    path('job/<int:job_id>/', views.job_detail_view, name='job_detail'),
 
 
 

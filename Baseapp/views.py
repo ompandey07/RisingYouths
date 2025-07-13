@@ -1,16 +1,18 @@
-from django.shortcuts import render , redirect
-from Admin.models import BlogPost , ManpowerGallery
+from django.shortcuts import render , redirect , get_object_or_404
+from Admin.models import BlogPost , ManpowerGallery , YouthJob
+
 
 # Create your views here.
 
 
 
-def main_home_page_view (request):
+def main_home_page_view(request):
     """
     Render the main home page of the Rising Youths Overseas Pvt. Ltd. website.
     """
-    blogs = BlogPost.objects.all().order_by('-created_at')[:6]  # Fetch the latest 3 blog posts
-    return render(request, 'index.html' , {'blogs': blogs})
+    blogs = BlogPost.objects.all().order_by('-created_at')[:6]
+    jobs = YouthJob.objects.all().order_by('-posted_at')[:6]  
+    return render(request, 'index.html', {'blogs': blogs, 'jobs': jobs})  
 
 
 
@@ -102,3 +104,30 @@ def human_resources_view(request):
     Render the human resources page.
     """
     return render(request, 'Components/human_resources.html')
+
+
+
+
+
+def job_detail_view(request, job_id):
+    """
+    Display detailed view of a specific job posting.
+    """
+    # Get the specific job or return 404 if not found
+    job = get_object_or_404(YouthJob, id=job_id)
+    
+    # Get related jobs (same category, excluding current job)
+    related_jobs = YouthJob.objects.filter(
+        category=job.category
+    ).exclude(id=job.id).order_by('-posted_at')[:3]
+    
+    # If no jobs in same category, get latest jobs from other categories
+    if not related_jobs:
+        related_jobs = YouthJob.objects.exclude(id=job.id).order_by('-posted_at')[:3]
+    
+    context = {
+        'job': job,
+        'related_jobs': related_jobs,
+    }
+    
+    return render(request, 'Components/job_detail.html', context)

@@ -4,19 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Rising Youths Overseas Pvt. Ltd.</title>
+    <title>{{ job.job_title }} - Rising Youths Overseas Pvt. Ltd.</title>
     <link rel="shortcut icon" href="{% static 'Images/Logo/logo.png' %}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-     <link rel="stylesheet" href="{% static 'Base/style.css' %}">
+    <link rel="stylesheet" href="{% static 'Base/style.css' %}">
 </head>
 <body class="font-sans">
+
     <!-- Header -->
-    <header class="bg-indigo-900 text-white py-3 px-6">
+   <header class="bg-indigo-900 text-white py-3 px-6">
        <div class="container mx-auto flex justify-between items-center">
              <!-- Logo and Company Name -->
              <div class="flex items-center space-x-3">
-                 <div class="w-12 h-12 rounded-full overflow-hidden bg-green-500 flex items-center justify-center">
+                 <div class="w-12 h-12 rounded-full overflow-hidden bg-green-500 flex items-center justify-center pulse-icon">
                      <img src="{% static 'Images/Logo/logo.png' %}" 
                           alt="Rising Youths Logo" 
                           class="w-full h-full object-cover"
@@ -45,7 +46,7 @@
                  </div>
      
                  <!-- User Icon Link -->
-                 <a href="{% url "login_view" %}" class="text-green-400 hover:text-white text-lg">
+                 <a href="{% url "login_view" %}" class="text-green-400 hover:text-white text-lg glow-effect rotate-hover">
                      <i class="ri-user-line"></i>
                  </a>
              </div>
@@ -170,116 +171,182 @@
         </div>
     </nav>
 
-    <!-- About Us Section -->
-    <section class="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+    <!-- Job Detail Section -->
+    <section class="py-12 md:py-20 bg-gray-50">
         <div class="container mx-auto px-6">
-            <!-- Page Header -->
-            <div class="text-center mb-16">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">About Us</h1>
-                <p class="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                    Learn more about Rising Youths Overseas and our commitment to connecting talent with global opportunities.
-                </p>
+            <!-- Breadcrumb -->
+            <div class="mb-8 fade-in-up">
+                <nav class="flex items-center space-x-2 text-sm text-gray-600">
+                    <a href="{% url "main_home_page_view" %}" class="hover:text-green-600 transition-colors">Home</a>
+                    <i class="ri-arrow-right-s-line"></i>
+                    <a href="#" class="hover:text-green-600 transition-colors">Jobs</a>
+                    <i class="ri-arrow-right-s-line"></i>
+                    <span class="text-gray-800 font-medium">{{ job.job_title }}</span>
+                </nav>
             </div>
 
-            <!-- Mission and Vision Cards -->
-            <div class="grid md:grid-cols-2 gap-8 mb-16">
-                <!-- Our Mission -->
-                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8 border-l-4 border-green-500">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4">
-                            <i class="ri-target-line text-white text-xl"></i>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Main Job Details -->
+                <div class="lg:col-span-2">
+                    <!-- Job Header -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 fade-in-left">
+                        <div class="h-64 md:h-80 bg-cover bg-center relative" style="background-image: url('{% if job.job_image %}{{ job.job_image.url }}{% else %}https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=320&q=80{% endif %}');">
+                            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                            <div class="absolute top-6 right-6">
+                                <span class="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold">{{ job.get_category_display }}</span>
+                            </div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h1 class="text-3xl md:text-4xl font-bold mb-2">{{ job.job_title }}</h1>
+                                <div class="flex items-center space-x-4 text-sm">
+                                    <span class="flex items-center">
+                                        <i class="ri-calendar-line mr-2"></i>
+                                        Posted: {{ job.posted_at|date:"M d, Y" }}
+                                    </span>
+                                    <span class="flex items-center">
+                                        <i class="ri-time-line mr-2"></i>
+                                        {{ job.posted_at|timesince }} ago
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800">Our Mission</h3>
                     </div>
-                    <p class="text-gray-700 leading-relaxed">
-                        To provide comprehensive manpower services that connect skilled professionals with international employment opportunities, ensuring mutual success for candidates and employers.
-                    </p>
-                </div>
-                
-                <!-- Our Vision -->
-                <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-8 border-l-4 border-red-500">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center mr-4">
-                            <i class="ri-eye-line text-white text-xl"></i>
+
+                    <!-- Job Description -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-8 fade-in-left">
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Job Description</h2>
+                        <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                            {% if job.job_description %}
+                                {{ job.job_description|linebreaks }}
+                            {% else %}
+                                <p>We are seeking qualified candidates for this exciting opportunity. This position offers excellent growth potential and the chance to work in an international environment.</p>
+                                
+                                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Key Responsibilities:</h3>
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li>Perform duties according to international standards</li>
+                                    <li>Maintain professional conduct and excellence</li>
+                                    <li>Collaborate effectively with diverse teams</li>
+                                    <li>Adapt to new environments and challenges</li>
+                                </ul>
+
+                                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Requirements:</h3>
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li>Relevant experience in the field</li>
+                                    <li>Strong communication skills</li>
+                                    <li>Willingness to work overseas</li>
+                                    <li>Valid documentation and certifications</li>
+                                </ul>
+
+                                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Benefits:</h3>
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li>Competitive salary package</li>
+                                    <li>Accommodation and meals provided</li>
+                                    <li>Medical insurance coverage</li>
+                                    <li>Annual leave and ticket allowance</li>
+                                </ul>
+                            {% endif %}
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800">Our Vision</h3>
                     </div>
-                    <p class="text-gray-700 leading-relaxed">
-                        To be the leading manpower agency in Nepal, recognized for our integrity, professionalism, and commitment to helping careers blossom globally.
-                    </p>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:col-span-1">
+                    <!-- Job Quick Info -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8 fade-in-right">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Job Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="ri-bookmark-line mr-2 text-green-500"></i>
+                                    Category
+                                </span>
+                                <span class="font-semibold text-gray-800">{{ job.get_category_display }}</span>
+                            </div>
+                            <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="ri-calendar-line mr-2 text-green-500"></i>
+                                    Posted Date
+                                </span>
+                                <span class="font-semibold text-gray-800">{{ job.posted_at|date:"M d, Y" }}</span>
+                            </div>
+                            <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="ri-refresh-line mr-2 text-green-500"></i>
+                                    Last Updated
+                                </span>
+                                <span class="font-semibold text-gray-800">{{ job.updated_at|date:"M d, Y" }}</span>
+                            </div>
+                            <div class="flex items-center justify-between py-3">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="ri-time-line mr-2 text-green-500"></i>
+                                    Status
+                                </span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">Open</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Apply Now Card -->
+                    <div class="bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl shadow-lg p-6 text-white mb-8 fade-in-right">
+                        <h3 class="text-xl font-bold mb-4">Ready to Apply?</h3>
+                        <p class="text-green-100 mb-6">Take the next step in your career journey with Rising Youths Overseas.</p>
+                        <div class="space-y-3">
+                            <a href="{% url "contact_us_view" %}" class="block w-full bg-white text-green-600 py-3 px-4 rounded-lg font-semibold text-center hover:bg-gray-50 transition-colors">
+                                Apply Now
+                            </a>
+                            <a href="{% url "contact_us_view" %}" class="block w-full border border-white text-white py-3 px-4 rounded-lg font-semibold text-center hover:bg-white hover:text-green-600 transition-colors">
+                                Contact Us
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Share Job -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 fade-in-right">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Share This Job</h3>
+                        <div class="flex space-x-3">
+                            <a href="#" class="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center text-white transition-colors">
+                                <i class="ri-facebook-fill"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-blue-400 hover:bg-blue-500 rounded-full flex items-center justify-center text-white transition-colors">
+                                <i class="ri-twitter-fill"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-blue-700 hover:bg-blue-800 rounded-full flex items-center justify-center text-white transition-colors">
+                                <i class="ri-linkedin-fill"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-green-600 hover:bg-green-700 rounded-full flex items-center justify-center text-white transition-colors">
+                                <i class="ri-whatsapp-fill"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Our Values Section -->
-            <div class="bg-white rounded-2xl p-8 md:p-12 shadow-lg mb-16">
-                <div class="flex items-center justify-center mb-8">
-                    <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-xl flex items-center justify-center mr-4">
-                        <i class="ri-heart-line text-white text-xl"></i>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Values</h2>
-                </div>
-                
-                <!-- Values Grid -->
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Integrity -->
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold text-indigo-600">Integrity</h4>
-                        <p class="text-gray-700 leading-relaxed">
-                            We maintain the highest ethical standards in all our operations and dealings.
-                        </p>
-                    </div>
-                    
-                    <!-- Excellence -->
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold text-indigo-600">Excellence</h4>
-                        <p class="text-gray-700 leading-relaxed">
-                            We strive for excellence in every service we provide to our clients.
-                        </p>
-                    </div>
-                    
-                    <!-- Transparency -->
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold text-indigo-600">Transparency</h4>
-                        <p class="text-gray-700 leading-relaxed">
-                            We believe in clear, honest communication throughout the process.
-                        </p>
-                    </div>
-                    
-                    <!-- Support -->
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold text-indigo-600">Support</h4>
-                        <p class="text-gray-700 leading-relaxed">
-                            We provide comprehensive support from application to successful placement.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- About Rising Youths Overseas -->
-            <div class="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
-                <div class="flex items-center mb-8">
-                    <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-green-500 rounded-xl flex items-center justify-center mr-4">
-                        <i class="ri-team-line text-white text-xl"></i>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">About Rising Youths Overseas</h2>
-                </div>
-                
-                <div class="space-y-6 text-gray-700 leading-relaxed">
-                    <p>
-                        Established in 2025, Rising Youths Overseas Pvt. Ltd. is a licensed manpower agency based in Kathmandu, Nepal. We specialize in connecting skilled professionals with international employment opportunities across various industries and sectors.
-                    </p>
-                    
-                    <p>
-                        Our comprehensive services include recruitment, training, orientation, travel management, and ongoing support for both candidates and employers. We have built strong relationships with reputable companies worldwide, ensuring quality placements that benefit all parties involved.
-                    </p>
-                    
-                    <p>
-                        With our experienced team and commitment to excellence, we have successfully placed hundreds of professionals in various countries, helping them achieve their career goals while meeting the staffing needs of our international partners.
-                    </p>
-                    
-                    <p>
-                        At Rising Youths Overseas, we don't just find jobs – we build careers and create opportunities for professional growth on a global scale.
-                    </p>
+            <!-- Related Jobs -->
+            <div class="mt-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
+                    Related <span class="gradient-text">Jobs</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {% for related_job in related_jobs %}
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                            <div class="h-32 bg-cover bg-center relative" style="background-image: url('{% if related_job.job_image %}{{ related_job.job_image.url }}{% else %}https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=128&q=80{% endif %}');">
+                                <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                                <div class="absolute top-2 right-2">
+                                    <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold">{{ related_job.get_category_display }}</span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-bold text-gray-800 mb-2">{{ related_job.job_title }}</h3>
+                                <p class="text-gray-600 text-sm mb-3">{{ related_job.posted_at|date:"M d, Y" }}</p>
+                                <a href="{% url 'job_detail' related_job.id %}" class="text-green-600 hover:text-green-700 font-medium text-sm flex items-center">
+                                    View Details <i class="ri-arrow-right-line ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="col-span-full text-center py-8">
+                            <p class="text-gray-500">No related jobs available at the moment.</p>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -292,7 +359,7 @@
                 <!-- Company Info -->
                 <div class="lg:col-span-2">
                     <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center pulse-icon">
                             <i class="ri-plant-line text-white text-xl"></i>
                         </div>
                         <div>
@@ -304,16 +371,16 @@
                         Your trusted partner for overseas employment opportunities. We are committed to helping talented individuals find their dream careers abroad with professional excellence and personalized support.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors glow-effect">
                             <i class="ri-facebook-fill"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors glow-effect">
                             <i class="ri-twitter-fill"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors glow-effect">
                             <i class="ri-linkedin-fill"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                        <a href="#" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors glow-effect">
                             <i class="ri-instagram-fill"></i>
                         </a>
                     </div>
@@ -323,12 +390,12 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
                     <ul class="space-y-3">
-                        <li><a href="{% url 'about_us_view' %}" class="text-gray-300 hover:text-green-400 transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">About Us</a></li>
                         <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Our Team</a></li>
                         <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Services</a></li>
                         <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Procedures</a></li>
                         <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Gallery</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Contact</a></li>
+                        <li><a href="{% url "contact_us_view" %}" class="text-gray-300 hover:text-green-400 transition-colors">Contact</a></li>
                     </ul>
                 </div>
                 
@@ -377,6 +444,7 @@
             </div>
         </div>
     </footer>
+
     <script src="{% static 'Base/script.js' %}"></script>
 </body>
 </html>

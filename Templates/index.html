@@ -9,8 +9,59 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'Base/style.css' %}">
+    
+    <style>
+        /* Floating animation for the sticky image */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .floating-image {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .floating-image:hover {
+            animation-duration: 1.5s;
+            transform: scale(1.1);
+        }
+        
+        /* Ensure the floating image is always visible */
+        .sticky-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hide on small screens to avoid interference */
+        @media (max-width: 768px) {
+            .sticky-float {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body class="font-sans">
+
+    <!-- Floating Sticky Image -->
+    <div class="sticky-float">
+        <a href="https://wa.me/9779843306075" class="block" target="_blank">
+            <img src="{% static 'Images/Assests/circle.png' %}" 
+                 alt="Contact Us" 
+                 class="floating-image w-16 h-16 md:w-20 md:h-20 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <!-- Fallback icon if PNG doesn't load -->
+            <div class="floating-image w-16 h-16 md:w-20 md:h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer flex items-center justify-center hidden">
+                <i class="ri-customer-service-2-line text-white text-2xl md:text-3xl"></i>
+            </div>
+        </a>
+    </div>
 
     <!-- Header -->
    <header class="bg-indigo-900 text-white py-3 px-6">
@@ -326,6 +377,69 @@
             </div>
         </div>
     </section>
+
+    <!-- Recent Jobs Section -->
+      <section class="py-12 md:py-20 bg-gray-50" id="jobs-section">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12 md:mb-16 fade-in-up">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+                Recent <span class="gradient-text">Jobs</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto mb-6"></div>
+            <p class="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
+                Discover exciting career opportunities with our latest job openings across various industries and skill levels.
+            </p>
+        </div>
+        
+        <!-- Job Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {% for job in jobs %}
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 job-card scale-in stagger-{{ forloop.counter }}">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('{% if job.job_image %}{{ job.job_image.url }}{% else %}https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=192&q=80{% endif %}');">
+                        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">{{ job.get_category_display }}</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">{{ job.job_title }}</h3>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                                <span>{{ job.posted_at|date:"M d, Y" }}</span>
+                                <span class="flex items-center">
+                                    <i class="ri-time-line mr-1"></i>
+                                    {{ job.posted_at|timesince }} ago
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between gap-3">
+                                <a href="{% url 'job_detail' job.id %}" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center">
+                                    Read More
+                                    <i class="ri-arrow-right-line ml-1"></i>
+                                </a>
+                                <a href="{% url "contact_us_view" %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center">
+                                    Apply Now 
+                                    <i class="ri-arrow-right-line ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-span-full text-center py-16 fade-in-up">
+                    <i class="ri-briefcase-line text-6xl text-gray-300 mb-4 float-element"></i>
+                    <h3 class="text-2xl font-bold text-gray-600 mb-2">No Jobs Available</h3>
+                    <p class="text-gray-500">Check back soon for new opportunities!</p>
+                    <div class="loading-dots mt-4">
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+</section>
 
     <!-- Latest News and Blogs Section -->
     <section class="py-12 md:py-20 bg-white" id="blog-section">

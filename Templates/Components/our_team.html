@@ -72,16 +72,16 @@
             <div class="flex justify-between items-center">
                 <!-- Desktop Navigation -->
                 <ul class="hidden md:flex justify-center space-x-4 lg:space-x-8 text-white font-medium flex-1">
-                    <li><a href="{% url 'main_home_page_view' %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">HOME</a></li>
+                    <li><a href="{% url "main_home_page_view" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">HOME</a></li>
                     <li class="dropdown">
                         <a href="#" class="hover:text-yellow-200 transition-colors flex items-center text-sm lg:text-base">
                             WHO WE ARE
                             <i class="ri-arrow-down-s-line ml-1"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="{% url 'chairman_message_view' %}">MESSAGE FROM CHAIRMAN</a>
-                            <a href="{% url 'about_us_view' %}">ABOUT US</a>
-                            <a href="{% url 'our_team_view' %}">OUR TEAM</a>
+                            <a href="{% url "chairman_message_view" %}">MESSAGE FROM CHAIRMAN</a>
+                            <a href="{% url "about_us_view" %}">ABOUT US</a>
+                            <a href="{% url "our_team_view" %}">OUR TEAM</a>
                             <a href="{% url "license_and_certificates_view" %}">LICENSE & CERTIFICATES</a>
                             <a href="{% url "organizational_chart_view" %}">ORGANIZATIONAL CHART</a>
                         </div>
@@ -92,20 +92,20 @@
                             <i class="ri-arrow-down-s-line ml-1"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="#">CONSULTING</a>
-                            <a href="#">TRAINING & ORIENTATION</a>
-                            <a href="#">TRAVEL MANAGEMENT</a>
-                            <a href="#">HUMAN RESOURCES</a>
+                            <a href="{% url "consulting_view" %}">CONSULTING</a>
+                            <a href="{% url "traning_and_orientation_view" %}">TRAINING & ORIENTATION</a>
+                            <a href="{% url "travel_management_view" %}">TRAVEL MANAGEMENT</a>
+                            <a href="{% url "human_resources_view" %}">HUMAN RESOURCES</a>
                         </div>
                     </li>
-                    <li><a href="#" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">PROCEDURES</a></li>
-                    <li><a href="#" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">GALLERY</a></li>
-                    <li><a href="#" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">BLOG</a></li>
-                    <li><a href="#" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">CONTACT</a></li>
+                    <li><a href="{% url "procedures_view" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">PROCEDURES</a></li>
+                    <li><a href="{% url "gallery_view" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">GALLERY</a></li>
+                    <li><a href="{% url "blog_list" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">BLOG</a></li>
+                    <li><a href="{% url "contact_us_view" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">CONTACT</a></li>
                 </ul>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl bounce-click">
                     <i class="ri-menu-line"></i>
                 </button>
             </div>
@@ -121,13 +121,13 @@
                         </div>
                         <span class="text-white font-bold">RISING YOUTHS</span>
                     </div>
-                    <button id="mobile-menu-close" class="text-white text-2xl">
+                    <button id="mobile-menu-close" class="text-white text-2xl bounce-click">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
                 
                 <ul class="space-y-4 text-white">
-                    <li><a href="{% url 'main_home_page_view' %}" class="block py-2 text-lg">HOME</a></li>
+                    <li><a href="{% url "main_home_page_view" %}" class="block py-2 text-lg">HOME</a></li>
                     <li>
                         <details class="group">
                             <summary class="flex items-center justify-between py-2 text-lg cursor-pointer">
@@ -135,9 +135,9 @@
                                 <i class="ri-arrow-down-s-line group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <ul class="ml-4 mt-2 space-y-2">
-                                <li><a href="{% url 'chairman_message_view' %}" class="block py-1 text-gray-300">MESSAGE FROM CHAIRMAN</a></li>
-                                <li><a href="{% url 'about_us_view' %}" class="block py-1 text-gray-300">ABOUT US</a></li>
-                                <li><a href="{% url 'our_team_view' %}" class="block py-1 text-gray-300">OUR TEAM</a></li>
+                                <li><a href="{% url "chairman_message_view" %}" class="block py-1 text-gray-300">MESSAGE FROM CHAIRMAN</a></li>
+                                <li><a href="{% url "about_us_view" %}" class="block py-1 text-gray-300">ABOUT US</a></li>
+                                <li><a href="{% url "our_team_view" %}" class="block py-1 text-gray-300">OUR TEAM</a></li>
                                 <li><a href="{% url "license_and_certificates_view" %}" class="block py-1 text-gray-300">LICENSE & CERTIFICATES</a></li>
                                 <li><a href="{% url "organizational_chart_view" %}" class="block py-1 text-gray-300">ORGANIZATIONAL CHART</a></li>
                             </ul>
@@ -150,17 +150,17 @@
                                 <i class="ri-arrow-down-s-line group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <ul class="ml-4 mt-2 space-y-2">
-                                <li><a href="#" class="block py-1 text-gray-300">CONSULTING</a></li>
-                                <li><a href="#" class="block py-1 text-gray-300">TRAINING & ORIENTATION</a></li>
-                                <li><a href="#" class="block py-1 text-gray-300">TRAVEL MANAGEMENT</a></li>
-                                <li><a href="#" class="block py-1 text-gray-300">HUMAN RESOURCES</a></li>
+                                <li><a href="{% url "consulting_view" %}" class="block py-1 text-gray-300">CONSULTING</a></li>
+                                <li><a href="{% url "traning_and_orientation_view" %}" class="block py-1 text-gray-300">TRAINING & ORIENTATION</a></li>
+                                <li><a href="{% url "travel_management_view" %}" class="block py-1 text-gray-300">TRAVEL MANAGEMENT</a></li>
+                                <li><a href="{% url "human_resources_view" %}" class="block py-1 text-gray-300">HUMAN RESOURCES</a></li>
                             </ul>
                         </details>
                     </li>
-                    <li><a href="#" class="block py-2 text-lg">PROCEDURES</a></li>
-                    <li><a href="#" class="block py-2 text-lg">GALLERY</a></li>
-                    <li><a href="#" class="block py-2 text-lg">BLOG</a></li>
-                    <li><a href="#" class="block py-2 text-lg">CONTACT</a></li>
+                    <li><a href="{% url "procedures_view" %}" class="block py-2 text-lg">PROCEDURES</a></li>
+                    <li><a href="{% url "gallery_view" %}" class="block py-2 text-lg">GALLERY</a></li>
+                    <li><a href="{% url "blog_list" %}" class="block py-2 text-lg">BLOG</a></li>
+                    <li><a href="{% url "contact_us_view" %}" class="block py-2 text-lg">CONTACT</a></li>
                 </ul>
                 
                 <!-- Mobile Contact Info -->
@@ -221,18 +221,7 @@
                             <p class="text-sm text-gray-600">HR Manager</p>
                             <p class="text-xs text-gray-500">Rising Youths Overseas</p>
                         </div>
-                        
-                        <div class="team-member p-4 rounded-lg mb-3" data-member="amit">
-                            <h3 class="font-bold text-lg text-gray-800">AMIT GURUNG</h3>
-                            <p class="text-sm text-gray-600">Operations Manager</p>
-                            <p class="text-xs text-gray-500">Rising Youths Overseas</p>
-                        </div>
-                        
-                        <div class="team-member p-4 rounded-lg" data-member="sunita">
-                            <h3 class="font-bold text-lg text-gray-800">SUNITA RAI</h3>
-                            <p class="text-sm text-gray-600">Training Coordinator</p>
-                            <p class="text-xs text-gray-500">Rising Youths Overseas</p>
-                        </div>
+                                              
                     </div>
                 </div>
                 
@@ -245,7 +234,7 @@
                                 <!-- Profile Image -->
                                 <div class="flex-shrink-0">
                                     <div class="w-64 h-80 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl overflow-hidden">
-                                        <img src="{% static 'Images/Team/prasamsha.png' %}" 
+                                        <img src="{% static 'Images/Team/Shrijana shrestha.jpeg' %}" 
                                              alt="Prasamsha Shrestha" 
                                              class="w-full h-full object-cover"
                                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -257,8 +246,8 @@
                                 
                                 <!-- Profile Info -->
                                 <div class="flex-1 text-center md:text-left">
-                                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">PRASAMSHA SHRESTHA</h2>
-                                    <p class="text-xl text-green-500 font-semibold mb-2">Chairman & Founder</p>
+                                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Shrijana shrestha</h2>
+                                    <p class="text-xl text-green-500 font-semibold mb-2">Chairman</p>
                                     <p class="text-gray-600 mb-6">Rising Youths Overseas</p>
                                     
                                     <p class="text-gray-700 leading-relaxed">
@@ -272,14 +261,14 @@
                         <div id="profile-prabin" class="profile-card hidden">
                             <div class="text-center">
                                 <div class="w-48 h-60 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl mx-auto mb-6 overflow-hidden flex items-center justify-center">
-                                    <img src="{% static 'Images/Team/prabin.png' %}" 
+                                    <img src="{% static 'Images/Team/prabin dk.jpeg' %}" 
                                          alt="Prabin" 
                                          class="w-full h-full object-cover"
                                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                     <i class="ri-user-line text-white text-6xl hidden"></i>
                                 </div>
-                                <h2 class="text-3xl font-bold text-gray-800 mb-2">PRABIN</h2>
-                                <p class="text-xl text-green-500 font-semibold mb-2">Project Manager</p>
+                                <h2 class="text-3xl font-bold text-gray-800 mb-2">Prabin DK</h2>
+                                <p class="text-xl text-green-500 font-semibold mb-2">Managing Director</p>
                                 <p class="text-gray-600 mb-6">Rising Youths Overseas</p>
                                 <p class="text-gray-700 leading-relaxed">
                                     Experienced project manager ensuring smooth processes and efficient service delivery for all our international recruitment activities.
@@ -290,56 +279,21 @@
                         <div id="profile-priya" class="profile-card hidden">
                             <div class="text-center">
                                 <div class="w-48 h-60 bg-gradient-to-br from-pink-400 to-red-500 rounded-2xl mx-auto mb-6 overflow-hidden flex items-center justify-center">
-                                    <img src="{% static 'Images/Team/priya.png' %}" 
+                                    <img src="{% static 'Images/Team/Hem Raj Koirala .jpeg' %}" 
                                          alt="Priya Thapa" 
                                          class="w-full h-full object-cover"
                                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                     <i class="ri-user-line text-white text-6xl hidden"></i>
                                 </div>
-                                <h2 class="text-3xl font-bold text-gray-800 mb-2">PRIYA THAPA</h2>
-                                <p class="text-xl text-green-500 font-semibold mb-2">HR Manager</p>
+                                <h2 class="text-3xl font-bold text-gray-800 mb-2">Hem Raj Koirala</h2>
+                                <p class="text-xl text-green-500 font-semibold mb-2">Labor Representative</p>
                                 <p class="text-gray-600 mb-6">Rising Youths Overseas</p>
                                 <p class="text-gray-700 leading-relaxed">
                                     Dedicated HR manager with expertise in candidate assessment, training coordination, and ensuring the best match between talent and opportunities.
                                 </p>
                             </div>
                         </div>
-                        
-                        <div id="profile-amit" class="profile-card hidden">
-                            <div class="text-center">
-                                <div class="w-48 h-60 bg-gradient-to-br from-green-400 to-teal-500 rounded-2xl mx-auto mb-6 overflow-hidden flex items-center justify-center">
-                                    <img src="{% static 'Images/Team/amit.png' %}" 
-                                         alt="Amit Gurung" 
-                                         class="w-full h-full object-cover"
-                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                    <i class="ri-user-line text-white text-6xl hidden"></i>
-                                </div>
-                                <h2 class="text-3xl font-bold text-gray-800 mb-2">AMIT GURUNG</h2>
-                                <p class="text-xl text-green-500 font-semibold mb-2">Operations Manager</p>
-                                <p class="text-gray-600 mb-6">Rising Youths Overseas</p>
-                                <p class="text-gray-700 leading-relaxed">
-                                    Experienced operations manager overseeing daily operations and maintaining strong relationships with overseas employers to create more opportunities for our candidates.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div id="profile-sunita" class="profile-card hidden">
-                            <div class="text-center">
-                                <div class="w-48 h-60 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl mx-auto mb-6 overflow-hidden flex items-center justify-center">
-                                    <img src="{% static 'Images/Team/sunita.png' %}" 
-                                         alt="Sunita Rai" 
-                                         class="w-full h-full object-cover"
-                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                    <i class="ri-user-line text-white text-6xl hidden"></i>
-                                </div>
-                                <h2 class="text-3xl font-bold text-gray-800 mb-2">SUNITA RAI</h2>
-                                <p class="text-xl text-green-500 font-semibold mb-2">Training Coordinator</p>
-                                <p class="text-gray-600 mb-6">Rising Youths Overseas</p>
-                                <p class="text-gray-700 leading-relaxed">
-                                    Coordinates pre-departure training programs and ensures candidates are well-prepared for their international career opportunities.
-                                </p>
-                            </div>
-                        </div>
+                                                
                     </div>
                 </div>
             </div>

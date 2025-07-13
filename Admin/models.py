@@ -53,3 +53,24 @@ class ManpowerGallery(models.Model):
 
     def __str__(self):
         return f"{self.category} - {self.created_at.strftime('%Y-%m-%d')}"
+
+
+
+
+class YouthJob(models.Model):
+    CATEGORY_CHOICES = [
+        ('unskilled', 'Unskilled'),
+        ('semiskilled', 'Semi-skilled'),
+        ('skilled', 'Skilled'),
+        ('professional', 'Professional'),
+    ]
+
+    job_title = models.CharField(max_length=200)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    job_image = models.ImageField(upload_to='Job_Images/')
+    job_description = models.TextField()
+    posted_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.job_title

@@ -4,9 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
-from .models import BlogPost
+from .models import BlogPost , YouthJob, ManpowerGallery
 from Backend.models import ContactMessage
 from django.contrib.auth.models import User
+from django.db.models import Count
 
 # Create your views here.
 
@@ -54,23 +55,29 @@ def logout_view(request):
     return redirect('login_view')
 
 
+
+
 def admin_dashboard_view(request):
     if not request.user.is_authenticated:
-        return redirect('login_view')  # Redirect to login if not authenticated
+        return redirect('login_view')
 
     if not request.user.is_superuser and request.user.username != "admin@admin.com":
         return redirect('error_acces_denied')
 
-
+    # Real data counts
     total_blogs = BlogPost.objects.count()
     total_contact = ContactMessage.objects.count()
+    total_jobs = YouthJob.objects.count()  # Add this
+    total_gallery_images = ManpowerGallery.objects.count()  # Add this
 
-    cotext  = {
+    context = {
         'total_blogs': total_blogs,
         'total_contact': total_contact,
+        'total_jobs': total_jobs,  # Add this
+        'total_gallery_images': total_gallery_images,  # Add this
     }
 
-    return render(request, 'Admin/AdminDashboard.html' , cotext)
+    return render(request, 'Admin/AdminDashboard.html', context)
 
 
 
@@ -211,13 +218,50 @@ def blog_list_view(request):
     # Get all blog posts ordered by creation date (newest first)
     blogs = BlogPost.objects.all().order_by('-created_at')
     
-    # Optional: Add pagination if you have many blogs
-    # paginator = Paginator(blogs, 12)  # Show 12 blogs per page
-    # page_number = request.GET.get('page')
-    # blogs = paginator.get_page(page_number)
     
     context = {
         'blogs': blogs,
     }
     
     return render(request, 'Admin/all_blogs.html', context)
+
+
+
+
+
+def contact_messages_view(request):
+    if not request.user.is_authenticated:
+        return redirect('login_view')
+    
+    if not request.user.is_superuser and request.user.username != "admin@admin.com":
+        return redirect('error_acces_denied')
+    
+    # Latest messages at end (remove '-' from ordering)
+    contact_messages = ContactMessage.objects.all().order_by('submitted_at')
+    total_messages = contact_messages.count()
+    
+    context = {
+        'contact_messages': contact_messages,
+        'total_messages': total_messages,
+    }
+    
+    return render(request, 'Admin/ContactMessages.html', context)
+
+
+def delete_contact_message(request, message_id):
+    if not request.user.is_authenticated:
+        return redirect('login_view')
+    
+    if not request.user.is_superuser and request.user.username != "admin@admin.com":
+        return redirect('error_acces_denied')
+    
+    if request.method == 'POST':
+        try:
+            message = ContactMessage.objects.get(id=message_id)
+            message.delete()
+            messages.success(request, 'Contact message deleted successfully!')
+        except ContactMessage.DoesNotExist:
+            messages.error(request, 'Message not found!')
+    
+    return redirect('contact_messages_view')
+
