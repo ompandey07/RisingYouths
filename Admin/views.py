@@ -8,14 +8,20 @@ from .models import BlogPost , YouthJob, ManpowerGallery
 from Backend.models import ContactMessage
 from django.contrib.auth.models import User
 from django.db.models import Count
+from django.urls import reverse_lazy
 
 # Create your views here.
 
-
-
-
+# ========================================
+# AUTHENTICATION VIEWS
+# ========================================
 
 def login_view(request):
+    """
+    Handle user authentication and login process.
+    Creates default superuser if it doesn't exist.
+    Redirects authenticated users to dashboard.
+    """
     # If user is already authenticated, redirect to dashboard
     if request.user.is_authenticated:
         return redirect('admin_dashboard')
@@ -50,14 +56,25 @@ def login_view(request):
     return render(request, 'Admin/login.html')
 
 
+# ========================================
+
 def logout_view(request):
+    """
+    Handle user logout and redirect to login page.
+    """
     logout(request)
     return redirect('login_view')
 
 
-
-
+# ========================================
+# DASHBOARD VIEWS
+# ========================================
+@login_required(login_url=reverse_lazy('error_access_denied'))
 def admin_dashboard_view(request):
+    """
+    Display admin dashboard with statistics and counts.
+    Restricted to authenticated superusers only.
+    """
     if not request.user.is_authenticated:
         return redirect('login_view')
 
@@ -80,13 +97,16 @@ def admin_dashboard_view(request):
     return render(request, 'Admin/AdminDashboard.html', context)
 
 
+# ========================================
+# BLOG MANAGEMENT VIEWS
+# ========================================
 
-
-
-
-
-@login_required
+@login_required(login_url=reverse_lazy('error_access_denied'))
 def post_arena_log_view(request, post_id=None):
+    """
+    Handle blog post creation and editing.
+    Supports both new post creation and existing post updates.
+    """
     if not request.user.is_superuser and request.user.username != "admin@admin.com":
         return redirect('error_acces_denied')
 
@@ -150,13 +170,14 @@ def post_arena_log_view(request, post_id=None):
     })
 
 
+# ========================================
 
-
-#? -------------------------------------------------------------------------------------------------------------------------------------------------------
-
-# View for manage blog posts
-@login_required
+@login_required(login_url=reverse_lazy('error_access_denied'))
 def manage_blog_view(request):
+    """
+    Display all blog posts for management.
+    Shows posts with author information and categories.
+    """
     if not request.user.is_superuser and request.user.username != "admin@admin.com":
         return redirect('error_acces_denied')
 
@@ -165,13 +186,14 @@ def manage_blog_view(request):
     return render(request, 'Admin/ManageBlogs.html', {'posts': posts, 'categories': categories})
 
 
+# ========================================
 
-
-#? -------------------------------------------------------------------------------------------------------------------------------------------------------
-
-# View for delete blog posts
 @require_http_methods(["GET", "POST"]) # type: ignore
 def delete_post(request, post_id):
+    """
+    Handle blog post deletion.
+    Accepts both GET and POST requests for flexibility.
+    """
     try:
         post = get_object_or_404(BlogPost, id=post_id)
         post.delete()
@@ -180,13 +202,14 @@ def delete_post(request, post_id):
     except Exception as e:
         # Handle errors gracefully
         return redirect('manage_blog_view', error="Failed to delete post.")
-    
 
 
+# ========================================
 
 def blog_detail_view(request, blog_id):
     """
     Display a single blog post in detail with related posts.
+    Shows related posts from same category or latest posts if none available.
     """
     # Get the specific blog post or return 404 if not found
     blog = get_object_or_404(BlogPost, id=blog_id)
@@ -210,14 +233,15 @@ def blog_detail_view(request, blog_id):
     return render(request, 'Admin/blog_detail.html', context)
 
 
+# ========================================
 
 def blog_list_view(request):
     """
     Display all blog posts in a beautiful grid layout.
+    Orders posts by creation date (newest first).
     """
     # Get all blog posts ordered by creation date (newest first)
     blogs = BlogPost.objects.all().order_by('-created_at')
-    
     
     context = {
         'blogs': blogs,
@@ -226,10 +250,15 @@ def blog_list_view(request):
     return render(request, 'Admin/all_blogs.html', context)
 
 
-
-
-
+# ========================================
+# CONTACT MESSAGE MANAGEMENT VIEWS
+# ========================================
+@login_required(login_url=reverse_lazy('error_access_denied'))
 def contact_messages_view(request):
+    """
+    Display all contact messages for admin review.
+    Shows messages ordered by submission date.
+    """
     if not request.user.is_authenticated:
         return redirect('login_view')
     
@@ -248,7 +277,13 @@ def contact_messages_view(request):
     return render(request, 'Admin/ContactMessages.html', context)
 
 
+# ========================================
+
 def delete_contact_message(request, message_id):
+    """
+    Handle contact message deletion.
+    Restricted to authenticated superusers only.
+    """
     if not request.user.is_authenticated:
         return redirect('login_view')
     
@@ -265,3 +300,144 @@ def delete_contact_message(request, message_id):
     
     return redirect('contact_messages_view')
 
+
+# ========================================
+# GALLERY MANAGEMENT VIEWS
+# ========================================
+
+@login_required(login_url=reverse_lazy('error_access_denied'))
+def manage_gallery_view(request):
+    """
+    Handle gallery management operations (add, update, delete).
+    Supports CRUD operations for gallery items with image uploads.
+    """
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        
+        if action == 'add':
+            category = request.POST.get('category')
+            title = request.POST.get('title')
+            gallery_image = request.FILES.get('gallery_image')
+            
+            if category and gallery_image:
+                ManpowerGallery.objects.create(
+                    category=category,
+                    title=title if title else None,
+                    gallery_image=gallery_image
+                )
+                messages.success(request, 'Gallery item added successfully!')
+            else:
+                messages.error(request, 'Please select category and upload image.')
+        
+        elif action == 'update':
+            gallery_id = request.POST.get('gallery_id')
+            category = request.POST.get('category')
+            title = request.POST.get('title')
+            gallery_image = request.FILES.get('gallery_image')
+            
+            try:
+                item = ManpowerGallery.objects.get(id=gallery_id)
+                item.category = category
+                item.title = title if title else None
+                
+                if gallery_image:
+                    item.gallery_image = gallery_image
+                
+                item.save()
+                messages.success(request, 'Gallery item updated successfully!')
+            except ManpowerGallery.DoesNotExist:
+                messages.error(request, 'Gallery item not found.')
+        
+        elif action == 'delete':
+            gallery_id = request.POST.get('gallery_id')
+            
+            try:
+                item = ManpowerGallery.objects.get(id=gallery_id)
+                item.delete()
+                messages.success(request, 'Gallery item deleted successfully!')
+            except ManpowerGallery.DoesNotExist:
+                messages.error(request, 'Gallery item not found.')
+        
+        return redirect('manage_gallery_view')
+    
+    # GET request
+    gallery_items = ManpowerGallery.objects.all().order_by('-created_at')
+    
+    return render(request, 'Admin/manage_gallery.html', {
+        'gallery_items': gallery_items,
+    })
+
+
+# ========================================
+# JOB MANAGEMENT VIEWS
+# ========================================
+
+@login_required(login_url=reverse_lazy('error_access_denied'))
+def manage_jobs_view(request):
+    """
+    Handle job management operations (add, update, delete).
+    Supports CRUD operations for youth job postings with image uploads.
+    """
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        
+        if action == 'add':
+            job_title = request.POST.get('job_title')
+            category = request.POST.get('category')
+            job_image = request.FILES.get('job_image')
+            job_description = request.POST.get('job_description')
+            
+            if job_title and category and job_image and job_description:
+                YouthJob.objects.create(
+                    job_title=job_title,
+                    category=category,
+                    job_image=job_image,
+                    job_description=job_description
+                )
+                messages.success(request, 'Job posted successfully!')
+            else:
+                messages.error(request, 'Please fill in all required fields.')
+        
+        elif action == 'update':
+            job_id = request.POST.get('job_id')
+            job_title = request.POST.get('job_title')
+            category = request.POST.get('category')
+            job_image = request.FILES.get('job_image')
+            job_description = request.POST.get('job_description')
+            
+            try:
+                job = YouthJob.objects.get(id=job_id)
+                job.job_title = job_title
+                job.category = category
+                job.job_description = job_description
+                
+                if job_image:
+                    job.job_image = job_image
+                
+                job.save()
+                messages.success(request, 'Job updated successfully!')
+            except YouthJob.DoesNotExist:
+                messages.error(request, 'Job not found.')
+        
+        elif action == 'delete':
+            job_id = request.POST.get('job_id')
+            
+            try:
+                job = YouthJob.objects.get(id=job_id)
+                job.delete()
+                messages.success(request, 'Job deleted successfully!')
+            except YouthJob.DoesNotExist:
+                messages.error(request, 'Job not found.')
+        
+        return redirect('manage_jobs_view')
+    
+    # GET request
+    jobs = YouthJob.objects.all().order_by('-posted_at')
+    
+    return render(request, 'Admin/manage_jobs.html', {
+        'jobs': jobs,
+    })
+
+# ========================================
+# END OF VIEWS
+# ========================================

@@ -7,6 +7,9 @@ urlpatterns = [
     
 
     path('contact-us/', views.contact_us_view, name='contact_us_view'),
+
+    
+    path('access-denied/', views.error_acces_denied, name='error_access_denied'),
  
     
     

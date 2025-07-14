@@ -22,6 +22,12 @@ urlpatterns = [
 
     path('contact_messages/', views.contact_messages_view, name='contact_messages_view'),
     path('delete_contact_message/<int:message_id>/', views.delete_contact_message, name='delete_contact_message'),
+
+
+    path('gallery/', views.manage_gallery_view, name='manage_gallery_view'),
+
+
+    path('jobs/', views.manage_jobs_view, name='manage_jobs_view'),
  
     
     

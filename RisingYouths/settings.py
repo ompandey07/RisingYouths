@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-*xib&03$1plv)14f#!7x)ue@)p!ctn0za@(-mk9%ea)nvzer+h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.risingyouths.com.np', 'risingyouths.com.np']
+
 
 
 # Application definition
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'Baseapp',  
     'Backend',
     'Admin',  # Admin app for managing blogs
@@ -46,12 +48,23 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+
+CORS_ALLOWED_ORIGINS = [
+    "https://www.risingyouths.com.np",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+
 
 ROOT_URLCONF = 'RisingYouths.urls'
 

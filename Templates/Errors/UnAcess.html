@@ -1,0 +1,361 @@
+{% load static %}
+<link rel="shortcut icon" href="{% static 'Images/Logo/logo.png' %}" type="image/x-icon">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Denied - Rising Youths Overseas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+            animation: bounceIn 1.2s ease-out 0.5s both;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .error-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            animation: slideInLeft 1s ease-out 0.8s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            animation: slideInRight 1s ease-out 1s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out 1.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .btn {
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transform: translateY(0);
+        }
+
+        .btn-home {
+            background: #ff6b6b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-login {
+            background: #4ecdc4;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn-home:hover {
+            background: #ee5a52;
+        }
+
+        .btn-login:hover {
+            background: #44a08d;
+        }
+
+        .svg-container {
+            margin: 2rem 0;
+            position: relative;
+            animation: zoomIn 1s ease-out 0.6s both;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .floating-circle:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-circle:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            top: 20%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .floating-circle:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .floating-circle:nth-child(4) {
+            width: 50px;
+            height: 50px;
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-15px);
+                opacity: 0.7;
+            }
+        }
+
+        .lock-icon {
+            animation: swing 2s ease-in-out 2s infinite;
+        }
+
+        @keyframes swing {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(5deg);
+            }
+            75% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+            .error-title {
+                font-size: 2rem;
+            }
+            .error-message {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+                padding: 0 1rem;
+            }
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
+
+    <div class="container">
+        <div class="error-code pulse-animation">403</div>
+        
+        <div class="svg-container">
+            <svg class="lock-icon" width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 1C14.7614 1 17 3.23858 17 6V8H19C20.1046 8 21 8.89543 21 10V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V10C3 8.89543 3.89543 8 5 8H7V6C7 3.23858 9.23858 1 12 1ZM19 10H5V20H19V10ZM12 14C13.1046 14 14 14.8954 14 16C14 17.1046 13.1046 18 12 18C10.8954 18 10 17.1046 10 16C10 14.8954 10.8954 14 12 14ZM12 3C10.3431 3 9 4.34315 9 6V8H15V6C15 4.34315 13.6569 3 12 3Z" 
+                      fill="#feca57" 
+                      stroke="rgba(255,255,255,0.8)" 
+                      stroke-width="0.3"/>
+            </svg>
+        </div>
+
+        <h1 class="error-title">Access Denied</h1>
+        <p class="error-message">
+            Oops! You don't have permission to access this page.<br>
+            Please log in with proper credentials or return to the homepage.
+        </p>
+
+        <div class="buttons">
+            <a href="{% url 'main_home_page_view' %}" class="btn btn-home">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                Go to Home
+            </a>
+            <a href="{% url 'login_view' %}" class="btn btn-login">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C13.1046 2 14 2.89543 14 4V5H20C20.5523 5 21 5.44772 21 6V18C21 18.5523 20.5523 19 20 19H14V20C14 21.1046 13.1046 22 12 22C10.8954 22 10 21.1046 10 20V19H4C3.44772 19 3 18.5523 3 18V6C3 5.44772 3.44772 5 4 5H10V4C10 2.89543 10.8954 2 12 2ZM12 4V5H12V4ZM12 19V20H12V19ZM5 7V17H19V7H5ZM7.5 9H16.5C16.7761 9 17 9.22386 17 9.5C17 9.77614 16.7761 10 16.5 10H7.5C7.22386 10 7 9.77614 7 9.5C7 9.22386 7.22386 9 7.5 9ZM7.5 12H13.5C13.7761 12 14 12.2239 14 12.5C14 12.7761 13.7761 13 13.5 13H7.5C7.22386 13 7 12.7761 7 12.5C7 12.2239 7.22386 12 7.5 12Z"/>
+                </svg>
+                Back to Login
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simple click effect for buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Add some interactive hover effects
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s ease';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

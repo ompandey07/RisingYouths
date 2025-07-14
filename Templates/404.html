@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Rising Youths Overseas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: #e74c3c;
+            animation: bounceIn 1.2s ease-out 0.5s both;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .error-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            animation: slideInLeft 1s ease-out 0.8s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            animation: slideInRight 1s ease-out 1s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out 1.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .btn {
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transform: translateY(0);
+        }
+
+        .btn-home {
+            background: #e74c3c;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-back {
+            background: #27ae60;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn-home:hover {
+            background: #c0392b;
+        }
+
+        .btn-back:hover {
+            background: #229954;
+        }
+
+        .svg-container {
+            margin: 2rem 0;
+            position: relative;
+            animation: zoomIn 1s ease-out 0.6s both;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .floating-shape:nth-child(1) {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid rgba(255, 255, 255, 0.1);
+            top: 15%;
+            left: 15%;
+            animation-delay: 0s;
+            background: none;
+        }
+
+        .floating-shape:nth-child(2) {
+            width: 50px;
+            height: 50px;
+            top: 25%;
+            right: 20%;
+            animation-delay: 1.5s;
+            border-radius: 10px;
+        }
+
+        .floating-shape:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            bottom: 15%;
+            left: 25%;
+            animation-delay: 3s;
+        }
+
+        .floating-shape:nth-child(4) {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 40px solid rgba(255, 255, 255, 0.1);
+            bottom: 25%;
+            right: 15%;
+            animation-delay: 4s;
+            background: none;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+
+        .search-icon {
+            animation: searchMove 3s ease-in-out 2s infinite;
+        }
+
+        @keyframes searchMove {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(10px);
+            }
+            50% {
+                transform: translateX(-5px);
+            }
+            75% {
+                transform: translateX(8px);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+            .error-title {
+                font-size: 2rem;
+            }
+            .error-message {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+                padding: 0 1rem;
+            }
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="error-code pulse-animation">404</div>
+        
+        <div class="svg-container">
+            <svg class="search-icon" width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="11" cy="11" r="8" stroke="#f39c12" stroke-width="2" fill="none"/>
+                <path d="m21 21-4.35-4.35" stroke="#f39c12" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="11" cy="11" r="3" fill="#f39c12" opacity="0.3"/>
+            </svg>
+        </div>
+
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-message">
+            Oops! Looks like this page decided to take a vacation! 🏖️<br>
+            Maybe it's off exploring the world or just hiding from us. 🕵️‍♂️<br>
+            Don't worry, even our best pages get lost sometimes!
+        </p>
+
+        <div class="buttons">
+            <a href="{% url 'main_home_page_view' %}" class="btn btn-home">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                Go to Home
+            </a>
+            <a href="javascript:history.back()" class="btn btn-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.42-1.41L7.83 13H20v-2z"/>
+                </svg>
+                Go Back
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simple click effect for buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Add hover effects for buttons
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s ease';
+                });
+            });
+
+            // Add some interactive elements
+            const errorCode = document.querySelector('.error-code');
+            errorCode.addEventListener('mouseenter', function() {
+                this.style.color = '#f39c12';
+                this.style.transition = 'color 0.3s ease';
+            });
+            
+            errorCode.addEventListener('mouseleave', function() {
+                this.style.color = '#e74c3c';
+            });
+        });
+    </script>
+</body>
+</html>
