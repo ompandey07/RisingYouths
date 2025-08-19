@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="{% static 'Images/Logo/logo.png' %}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-     <link rel="stylesheet" href="{% static 'Base/style.css' %}">
+    <link rel="stylesheet" href="{% static 'Base/style.css' %}">
 </head>
 <body class="font-sans">
     <!-- Header -->
@@ -45,7 +45,7 @@
                  </div>
      
                  <!-- User Icon Link -->
-                 <a href="{% url "login_view" %}" class="text-green-400 hover:text-white text-lg">
+                 <a href="{% url 'login_view' %}" class="text-green-400 hover:text-white text-lg">
                      <i class="ri-user-line"></i>
                  </a>
              </div>
@@ -58,19 +58,19 @@
             <div class="flex justify-between items-center">
                 <!-- Desktop Navigation -->
                 <ul class="hidden md:flex justify-center space-x-4 lg:space-x-8 text-white font-medium flex-1">
-                    <li><a href="{% url "main_home_page_view" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">HOME</a></li>
+                    <li><a href="{% url 'main_home_page_view' %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">HOME</a></li>
                     <li class="dropdown">
                         <a href="#" class="hover:text-yellow-200 transition-colors flex items-center text-sm lg:text-base">
                             WHO WE ARE
                             <i class="ri-arrow-down-s-line ml-1"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="{% url "chairman_message_view" %}">MESSAGE FROM CHAIRMAN</a>
-                            <a href="{% url "messag_from_ceo_view" %}">MESSAGE FROM CEO</a>
-                            <a href="{% url "about_us_view" %}">ABOUT US</a>
-                            <a href="{% url "our_team_view" %}">OUR TEAM</a>
-                            <a href="{% url "license_and_certificates_view" %}">LICENSE & CERTIFICATES</a>
-                            <a href="{% url "organizational_chart_view" %}">ORGANIZATIONAL CHART</a>
+                            <a href="{% url 'chairman_message_view' %}">MESSAGE FROM CHAIRMAN</a>
+                            <a href="{% url 'messag_from_ceo_view' %}">MESSAGE FROM CEO</a>
+                            <a href="{% url 'about_us_view' %}">ABOUT US</a>
+                            <a href="{% url 'our_team_view' %}">OUR TEAM</a>
+                            <a href="{% url 'license_and_certificates_view' %}">LICENSE & CERTIFICATES</a>
+                            <a href="{% url 'organizational_chart_view' %}">ORGANIZATIONAL CHART</a>
                         </div>
                     </li>
                     <li class="dropdown">
@@ -79,16 +79,16 @@
                             <i class="ri-arrow-down-s-line ml-1"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="{% url "consulting_view" %}">CONSULTING</a>
-                            <a href="{% url "traning_and_orientation_view" %}">TRAINING & ORIENTATION</a>
-                            <a href="{% url "travel_management_view" %}">TRAVEL MANAGEMENT</a>
-                            <a href="{% url "human_resources_view" %}">HUMAN RESOURCES</a>
+                            <a href="{% url 'consulting_view' %}">CONSULTING</a>
+                            <a href="{% url 'traning_and_orientation_view' %}">TRAINING & ORIENTATION</a>
+                            <a href="{% url 'travel_management_view' %}">TRAVEL MANAGEMENT</a>
+                            <a href="{% url 'human_resources_view' %}">HUMAN RESOURCES</a>
                         </div>
                     </li>
-                    <li><a href="{% url "procedures_view" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">PROCEDURES</a></li>
-                    <li><a href="{% url "gallery_view" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">GALLERY</a></li>
-                    <li><a href="{% url "blog_list" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">BLOG</a></li>
-                    <li><a href="{% url "contact_us_view" %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">CONTACT</a></li>
+                    <li><a href="{% url 'procedures_view' %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">PROCEDURES</a></li>
+                    <li><a href="{% url 'gallery_view' %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">GALLERY</a></li>
+                    <li><a href="{% url 'blog_list' %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">BLOG</a></li>
+                    <li><a href="{% url 'contact_us_view' %}" class="hover:text-yellow-200 transition-colors text-sm lg:text-base">CONTACT</a></li>
                 </ul>
                 
                 <!-- Mobile Menu Button -->
@@ -114,7 +114,7 @@
                 </div>
                 
                 <ul class="space-y-4 text-white">
-                    <li><a href="{% url "main_home_page_view" %}" class="block py-2 text-lg">HOME</a></li>
+                    <li><a href="{% url 'main_home_page_view' %}" class="block py-2 text-lg">HOME</a></li>
                     <li>
                         <details class="group">
                             <summary class="flex items-center justify-between py-2 text-lg cursor-pointer">
@@ -122,12 +122,12 @@
                                 <i class="ri-arrow-down-s-line group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <ul class="ml-4 mt-2 space-y-2">
-                                <li><a href="{% url "chairman_message_view" %}" class="block py-1 text-gray-300">MESSAGE FROM CHAIRMAN</a></li>
-                                <li><a href="{% url "messag_from_ceo_view" %}" class="block py-1 text-gray-300">MESSAGE FROM CEO</a></li>
-                                <li><a href="{% url "about_us_view" %}" class="block py-1 text-gray-300">ABOUT US</a></li>
-                                <li><a href="{% url "our_team_view" %}" class="block py-1 text-gray-300">OUR TEAM</a></li>
-                                <li><a href="{% url "license_and_certificates_view" %}" class="block py-1 text-gray-300">LICENSE & CERTIFICATES</a></li>
-                                <li><a href="{% url "organizational_chart_view" %}" class="block py-1 text-gray-300">ORGANIZATIONAL CHART</a></li>
+                                <li><a href="{% url 'chairman_message_view' %}" class="block py-1 text-gray-300">MESSAGE FROM CHAIRMAN</a></li>
+                                <li><a href="{% url 'messag_from_ceo_view' %}" class="block py-1 text-gray-300">MESSAGE FROM CEO</a></li>
+                                <li><a href="{% url 'about_us_view' %}" class="block py-1 text-gray-300">ABOUT US</a></li>
+                                <li><a href="{% url 'our_team_view' %}" class="block py-1 text-gray-300">OUR TEAM</a></li>
+                                <li><a href="{% url 'license_and_certificates_view' %}" class="block py-1 text-gray-300">LICENSE & CERTIFICATES</a></li>
+                                <li><a href="{% url 'organizational_chart_view' %}" class="block py-1 text-gray-300">ORGANIZATIONAL CHART</a></li>
                             </ul>
                         </details>
                     </li>
@@ -138,17 +138,17 @@
                                 <i class="ri-arrow-down-s-line group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <ul class="ml-4 mt-2 space-y-2">
-                                <li><a href="{% url "consulting_view" %}" class="block py-1 text-gray-300">CONSULTING</a></li>
-                                <li><a href="{% url "traning_and_orientation_view" %}" class="block py-1 text-gray-300">TRAINING & ORIENTATION</a></li>
-                                <li><a href="{% url "travel_management_view" %}" class="block py-1 text-gray-300">TRAVEL MANAGEMENT</a></li>
-                                <li><a href="{% url "human_resources_view" %}" class="block py-1 text-gray-300">HUMAN RESOURCES</a></li>
+                                <li><a href="{% url 'consulting_view' %}" class="block py-1 text-gray-300">CONSULTING</a></li>
+                                <li><a href="{% url 'traning_and_orientation_view' %}" class="block py-1 text-gray-300">TRAINING & ORIENTATION</a></li>
+                                <li><a href="{% url 'travel_management_view' %}" class="block py-1 text-gray-300">TRAVEL MANAGEMENT</a></li>
+                                <li><a href="{% url 'human_resources_view' %}" class="block py-1 text-gray-300">HUMAN RESOURCES</a></li>
                             </ul>
                         </details>
                     </li>
-                    <li><a href="{% url "procedures_view" %}" class="block py-2 text-lg">PROCEDURES</a></li>
-                    <li><a href="{% url "gallery_view" %}" class="block py-2 text-lg">GALLERY</a></li>
-                    <li><a href="{% url "blog_list" %}" class="block py-2 text-lg">BLOG</a></li>
-                    <li><a href="{% url "contact_us_view" %}" class="block py-2 text-lg">CONTACT</a></li>
+                    <li><a href="{% url 'procedures_view' %}" class="block py-2 text-lg">PROCEDURES</a></li>
+                    <li><a href="{% url 'gallery_view' %}" class="block py-2 text-lg">GALLERY</a></li>
+                    <li><a href="{% url 'blog_list' %}" class="block py-2 text-lg">BLOG</a></li>
+                    <li><a href="{% url 'contact_us_view' %}" class="block py-2 text-lg">CONTACT</a></li>
                 </ul>
                 
                 <!-- Mobile Contact Info -->
@@ -183,73 +183,75 @@
                 </p>
             </div>
 
-            <!-- Certificates Grid -->
-            <div class="grid md:grid-cols-2 gap-8 mb-16">
-                <!-- Department of Foreign Employment License -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="ri-shield-check-line text-green-600 text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-indigo-600 mb-3">Department of Foreign Employment License</h3>
-                            <div class="space-y-1 text-sm text-gray-600">
-                                <p><span class="font-medium">License No:</span> 1244/2025</p>
-                                <p><span class="font-medium">Issued by:</span> Government of Nepal</p>
-                                <p class="text-green-600 font-medium">Valid until: 2028</p>
-                            </div>
-                        </div>
+            <!-- Certificates Image Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Renewal Certificate -->
+                <div class="bg-white p-8 shadow-lg border-2 border-gray-300">
+                    <img src="{% static 'Images/License/RENEWEL.jpg' %}" alt="Renewal Certificate" class="w-full h-80 object-contain mb-4">
+                    <h3 class="text-xl font-bold text-indigo-600 mb-3">Renewal Certificate (Nepal Notary Public Council)</h3>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <p><span class="font-medium">Date of Renewal:</span> 30-07-2025</p>
+                        <p><span class="font-medium">Validity:</span> Up to mid-July 2026</p>
+                        <p><span class="font-medium">Details:</span> This certificate confirms the renewal of our operational license by the Nepal Notary Public Council. It includes strict compliance terms, such as restrictions on establishing branch offices without prior approval, prohibition on working through unauthorized agents, and mandatory adherence to Nepal Government directives. The document is authenticated with the official seal and signature of the Section Officer, ensuring its legal validity.</p>
                     </div>
                 </div>
 
-                <!-- ISO 9001:2015 Certification -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="ri-user-settings-line text-green-600 text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-indigo-600 mb-3">ISO 9001:2015 Certification</h3>
-                            <div class="space-y-1 text-sm text-gray-600">
-                                <p><span class="font-medium">Certificate No:</span> ISO-9001-2025</p>
-                                <p><span class="font-medium">Issued by:</span> International Organization for Standardization</p>
-                                <p class="text-green-600 font-medium">Valid until: 2027</p>
-                            </div>
-                        </div>
+                <!-- Foreign Employment License -->
+                <div class="bg-white p-8 shadow-lg border-2 border-gray-300">
+                    <img src="{% static 'Images/License/IJAJAT.jpg' %}" alt="Foreign Employment License" class="w-full h-80 object-contain mb-4">
+                    <h3 class="text-xl font-bold text-indigo-600 mb-3">Foreign Employment License</h3>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <p><span class="font-medium">License No:</span> 1783/082/083</p>
+                        <p><span class="font-medium">Date:</span> 2082/04/14</p>
+                        <p><span class="font-medium">Issued To:</span> Rising Youths Overseas Pvt. Ltd.</p>
+                        <p><span class="font-medium">Details:</span> Issued by the Ministry of Labor, Employment and Social Security, Government of Nepal, this license authorizes Rising Youths Overseas Pvt. Ltd. to provide foreign employment services under the Foreign Employment Act 2064 (2007 AD). It includes regulatory terms ensuring compliance with national laws, signed by Director Tikaram Dhakal, and verified with the official seal and notary certification for authenticity.</p>
                     </div>
                 </div>
 
-                <!-- Nepal Association of Foreign Employment Agencies -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="ri-checkbox-circle-line text-green-600 text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-indigo-600 mb-3">Nepal Association of Foreign Employment Agencies</h3>
-                            <div class="space-y-1 text-sm text-gray-600">
-                                <p><span class="font-medium">Member No:</span> NAFEA-2025-001</p>
-                                <p><span class="font-medium">Issued by:</span> NAFEA</p>
-                                <p class="text-green-600 font-medium">Valid until: Active Member</p>
-                            </div>
-                        </div>
+                <!-- Nepali Renewal Record -->
+                <div class="bg-white p-8 shadow-lg border-2 border-gray-300">
+                    <img src="{% static 'Images/License/SAHIGALAT.jpg' %}" alt="Nepali Renewal Record" class="w-full h-80 object-contain mb-4">
+                    <h3 class="text-xl font-bold text-indigo-600 mb-3">Nepali Renewal Record</h3>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <p><span class="font-medium">Date of Renewal:</span> 2082/04/14 B.S. (30-07-2025 AD)</p>
+                        <p><span class="font-medium">Validity:</span> Up to Ashadh 2083 B.S. (mid-July 2026)</p>
+                        <p><span class="font-medium">Details:</span> This official renewal logbook entry, written in Nepali, records the license renewal with handwritten notes, an official seal, and the signature of the renewal officer. It explicitly prohibits opening branch offices, working through agents, sending workers to unpermitted countries, and mandates strict compliance with government regulations, ensuring our operations align with legal standards.</p>
                     </div>
                 </div>
 
-                <!-- Business Registration Certificate -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="ri-file-text-line text-green-600 text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-indigo-600 mb-3">Business Registration Certificate</h3>
-                            <div class="space-y-1 text-sm text-gray-600">
-                                <p><span class="font-medium">Registration No:</span> 12345-2025</p>
-                                <p><span class="font-medium">Issued by:</span> Office of Company Registrar</p>
-                                <p class="text-green-600 font-medium">Valid until: Permanent</p>
-                            </div>
-                        </div>
+                <!-- Certificate of Incorporation -->
+                <div class="bg-white p-8 shadow-lg border-2 border-gray-300">
+                    <img src="{% static 'Images/License/COMPANYREGISTTRAONS.jpg' %}" alt="Certificate of Incorporation" class="w-full h-80 object-contain mb-4">
+                    <h3 class="text-xl font-bold text-indigo-600 mb-3">Certificate of Incorporation</h3>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <p><span class="font-medium">Registration No:</span> 367812/81/82</p>
+                        <p><span class="font-medium">Date:</span> 02-06-2025</p>
+                        <p><span class="font-medium">Issued by:</span> Office of the Company Registrar</p>
+                        <p><span class="font-medium">Details:</span> Issued by the Office of the Company Registrar, Ministry of Industry, Commerce & Supplies, Government of Nepal, this certificate confirms the legal incorporation of Rising Youths Overseas Pvt. Ltd. on June 2, 2025, under the Companies Act, 2006. It stipulates that the company must obtain necessary approvals or licenses for specific objectives, ensuring compliance with regulatory frameworks.</p>
+                    </div>
+                </div>
+
+                <!-- Foreign Employment Agency License -->
+                <div class="bg-white p-8 shadow-lg border-2 border-gray-300">
+                    <img src="{% static 'Images/License/LICENCEDEPARTMENTS.jpg' %}" alt="Foreign Employment Agency License" class="w-full h-80 object-contain mb-4">
+                    <h3 class="text-xl font-bold text-indigo-600 mb-3">Foreign Employment Agency License</h3>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <p><span class="font-medium">Registration No:</span> 992</p>
+                        <p><span class="font-medium">Date:</span> 30-07-2025</p>
+                        <p><span class="font-medium">Validity:</span> Up to mid-July 2026</p>
+                        <p><span class="font-medium">Details:</span> Granted by the Foreign Employment Department, Ministry of Labour, Employment and Social Security, Government of Nepal, this license (Reg. No. 992) authorizes Rising Youths Overseas Pvt. Ltd. to operate as a foreign employment agency. It includes strict conditions prohibiting unapproved activities, agent-based operations, and work in unpermitted countries, ensuring adherence to prevailing laws and regulations.</p>
+                    </div>
+                </div>
+
+                <!-- PAN Data Proof -->
+                <div class="bg-white p-8 shadow-lg border-2 border-gray-300">
+                    <img src="{% static 'Images/License/COMPANYPAN.jpg' %}" alt="PAN Data Proof" class="w-full h-80 object-contain mb-4">
+                    <h3 class="text-xl font-bold text-indigo-600 mb-3">PAN Data Proof</h3>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <p><span class="font-medium">PAN No:</span> 612316/021/013</p>
+                        <p><span class="font-medium">Date:</span> 10-08-2025</p>
+                        <p><span class="font-medium">Issued by:</span> Inland Revenue Department</p>
+                        <p><span class="font-medium">Details:</span> Issued by the Inland Revenue Department under the Anti-Tax Evasion Division, Government of Nepal, this document confirms the tax registration of Rising Youths Overseas Pvt. Ltd. with PAN number 612316/021/013 as of August 10, 2025. It includes official authorization signatures and stamps, validating our compliance with national tax regulations.</p>
                     </div>
                 </div>
             </div>
@@ -316,7 +318,7 @@
         </div>
     </section>
 
-     <!-- Footer -->
+    <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12 md:py-16">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
