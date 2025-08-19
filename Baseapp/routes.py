@@ -8,6 +8,7 @@ urlpatterns = [
 
     path('', views.main_home_page_view, name='main_home_page_view'),
     path('chairman/', views.chairman_message_view, name='chairman_message_view'),
+    path('ceo/', views.messag_from_ceo_view, name='messag_from_ceo_view'),
     path('about-us/', views.about_us_view, name='about_us_view'),
     path('our-team/', views.our_team_view, name='our_team_view'),
     path('license-and-certificates/', views.license_and_certificates_view, name='license_and_certificates_view'),
@@ -19,6 +20,7 @@ urlpatterns = [
     path('travel/', views.travel_management_view, name='travel_management_view'),
     path('human-resources/', views.human_resources_view, name='human_resources_view'),
     path('job/<int:job_id>/', views.job_detail_view, name='job_detail'),
+
 
 
 

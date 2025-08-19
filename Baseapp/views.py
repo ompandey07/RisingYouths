@@ -163,6 +163,18 @@ def job_detail_view(request, job_id):
     return render(request, 'Components/job_detail.html', context)
 
 
+
+
+
+
+def messag_from_ceo_view(request):
+    """
+    Render the message from CEO page.
+    Static page displaying the CEO's message to visitors.
+    """
+    return render(request, 'Components/message_from_ceo.html')
+
+
 # ========================================
 # END OF VIEWS
 # ========================================

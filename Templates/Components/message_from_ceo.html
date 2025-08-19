@@ -172,161 +172,131 @@
         </div>
     </nav>
 
-    <!-- Consulting Services Section -->
+    <!-- Message From CEO Section -->
     <section class="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
         <div class="container mx-auto px-6">
-            <!-- Header -->
-            <div class="mb-16">
-                <h1 class="text-4xl md:text-5xl font-bold text-blue-900 mb-4">Consulting Services</h1>
-                <p class="text-lg text-gray-600 max-w-3xl">
-                    Expert guidance and consultation for your overseas career journey.
-                </p>
-            </div>
-
-            <!-- Professional Career Consulting Section -->
-            <div class="bg-gradient-to-r from-blue-900 to-indigo-900 rounded-2xl p-8 md:p-12 mb-16 text-white">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6">Professional Career Consulting</h2>
-                <p class="text-lg leading-relaxed opacity-90">
-                    Our experienced consultants provide personalized guidance to help you navigate the complex process of securing overseas employment. We offer comprehensive consultation services tailored to your specific career goals and target destinations.
-                </p>
-            </div>
-
-            <!-- Services Grid -->
-            <div class="grid md:grid-cols-2 gap-8 mb-16">
-                <!-- Career Assessment -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                            <i class="ri-user-settings-line text-green-600 text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-900 mb-3">Career Assessment</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Comprehensive evaluation of skills, experience, and career goals to identify the best international opportunities.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Market Analysis -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                            <i class="ri-global-line text-green-600 text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-900 mb-3">Market Analysis</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Detailed analysis of job markets in target countries, including salary expectations and growth prospects.
-                            </p>
+            <!-- Main Content Grid -->
+            <div class="grid lg:grid-cols-2 gap-12 items-start mb-16">
+                <!-- Left Side - CEO Profile Card -->
+                <div class="flex justify-center lg:justify-start">
+                    <div class="bg-white rounded-3xl p-8 shadow-2xl max-w-sm w-full relative overflow-hidden">
+                        <!-- Gradient Background -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 opacity-10"></div>
+                        
+                        <!-- Profile Content -->
+                        <div class="relative z-10 text-center">
+                            <!-- Profile Image -->
+                            <div class="mb-6">
+                                <div class="w-48 h-56 mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 p-1">
+                                    <div class="w-full h-full bg-white rounded-2xl overflow-hidden">
+                                        <img src="{% static 'Images/Team/prabin dk.jpeg' %}" 
+                                             alt="Mr. Prabin DK" 
+                                             class="w-full h-full object-cover"
+                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="w-full h-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center hidden">
+                                            <i class="ri-user-line text-white text-6xl"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Name and Title -->
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Mr. Prabin DK</h3>
+                            <p class="text-lg text-teal-600 font-semibold mb-1">Chief Executive Officer</p>
+                            <p class="text-gray-600 text-sm mb-6">Rising Youths Overseas Pvt. Ltd.</p>
+                            
+                            <!-- Badges -->
+                            <div class="flex flex-wrap justify-center gap-2">
+                                <span class="px-4 py-2 bg-gradient-to-r from-teal-400 to-green-400 text-white text-sm font-medium rounded-full">
+                                    Strategic Leader
+                                </span>
+                                <span class="px-4 py-2 bg-gradient-to-r from-blue-400 to-purple-400 text-white text-sm font-medium rounded-full">
+                                    Operations Expert
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Documentation Guidance -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                            <i class="ri-file-text-line text-green-600 text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-900 mb-3">Documentation Guidance</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Expert assistance with preparing and organizing all necessary documents for overseas employment.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Interview Preparation -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                            <i class="ri-checkbox-circle-line text-green-600 text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-900 mb-3">Interview Preparation</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Comprehensive training and mock interviews to prepare candidates for employer interviews.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Our Consulting Process -->
-            <div class="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
-                <h2 class="text-3xl font-bold text-blue-900 mb-12 text-center">Our Consulting Process</h2>
                 
+                <!-- Right Side - Quote and Message -->
                 <div class="space-y-8">
-                    <!-- Step 1 -->
-                    <div class="flex items-start space-x-6">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
-                            1
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-900 mb-2">Initial Consultation</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Free initial consultation to understand your career goals, skills, and preferences.
-                            </p>
-                        </div>
-                    </div>
+                    <!-- Quote Section -->
+                    <div class="relative">
+                        <!-- Large Quote Mark -->
+                        <div class="text-8xl text-teal-400 font-serif leading-none mb-4">"</div>
+                        
+                        <!-- Quote Text -->
+                        <blockquote class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6 pl-4">
+                            As CEO of Rising Youths Overseas, I am committed to transforming how we approach international employment services. Our mission is to create seamless pathways for talented individuals to achieve their global career aspirations while maintaining the highest standards of professionalism and integrity.
 
-                    <!-- Step 2 -->
-                    <div class="flex items-start space-x-6">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
-                            2
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-900 mb-2">Skills Assessment</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Comprehensive evaluation of your qualifications and experience.
-                            </p>
-                        </div>
-                    </div>
+We understand that choosing to work abroad is one of life's most significant decisions. That's why we focus on building comprehensive support systems that extend far beyond simple job placement. From initial consultation to post-deployment assistance, we ensure every candidate receives personalized attention and guidance.
 
-                    <!-- Step 3 -->
-                    <div class="flex items-start space-x-6">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
-                            3
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-900 mb-2">Opportunity Matching</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Identification of suitable job opportunities based on your profile.
-                            </p>
-                        </div>
-                    </div>
+Our operational excellence is built on transparency, reliability, and genuine commitment to our candidates' success. We work tirelessly to forge strong partnerships with international employers who value the exceptional skills and work ethic that Nepalese professionals bring to the global marketplace.
 
-                    <!-- Step 4 -->
-                    <div class="flex items-start space-x-6">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
-                            4
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-900 mb-2">Application Support</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Assistance with application preparation and submission.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Step 5 -->
-                    <div class="flex items-start space-x-6">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
-                            5
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-900 mb-2">Ongoing Support</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Continuous guidance throughout the recruitment and placement process.
-                            </p>
+Looking ahead, Rising Youths Overseas will continue to innovate and expand our services, always with the goal of making international career opportunities more accessible and successful for the youth of Nepal.
+                        </blockquote>
+                        
+                        <!-- Attribution -->
+                        <div class="text-right">
+                            <p class="text-teal-600 font-semibold text-lg">- Mr. Prabin DK</p>
+                            <p class="text-gray-500 text-sm">Chief Executive Officer</p>
                         </div>
                     </div>
                 </div>
             </div>
-
             
+            <!-- Vision and Commitment Cards -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Operational Excellence -->
+                <div class="bg-gradient-to-br from-teal-50 to-green-50 rounded-2xl p-8 border border-teal-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-teal-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="ri-settings-line text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Operational Excellence</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Streamlining processes and ensuring every aspect of our service delivery meets international standards while maintaining efficiency and quality.
+                    </p>
+                </div>
+                
+                <!-- Strategic Growth -->
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="ri-line-chart-line text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Strategic Growth</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Expanding our global network and continuously improving our services to provide more opportunities and better outcomes for our clients.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Message from Leadership -->
+            <div class="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-blue-500 rounded-xl flex items-center justify-center mr-4">
+                        <i class="ri-briefcase-line text-white text-xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Executive Leadership Perspective</h2>
+                </div>
+                
+                <div class="space-y-6 text-gray-700 leading-relaxed">
+                    <p class="text-lg">
+                        Under my leadership, Rising Youths Overseas has focused on building robust operational frameworks that ensure consistent service delivery and positive outcomes for all stakeholders. We believe that success comes from attention to detail and unwavering commitment to our core values.
+                    </p>
+                    
+                    <p>
+                        Our team works diligently to stay ahead of industry trends and regulatory requirements, ensuring that our candidates are always well-prepared for the global job market. We invest heavily in training, technology, and partnerships that enhance our ability to serve our clients effectively.
+                    </p>
+                    
+                    <p>
+                        As we continue to evolve, our focus remains on sustainable growth, innovative service offerings, and maintaining the trust that our candidates and international partners place in us. Together, we are creating lasting impact in the lives of ambitious professionals.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
