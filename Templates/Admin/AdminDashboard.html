@@ -438,14 +438,7 @@
                 Jobs
             </a>
         </div>
-    </aside> 3 0 013-3h4a3 3 0 013 3v1"></path>
-                        </svg>
-                        Logout
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    </aside>
 
 
 
@@ -653,10 +646,10 @@
         new Chart(blogCtx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                labels: {{ blog_chart_labels|safe }},
                 datasets: [{
                     label: 'Blog Posts',
-                    data: [12, 19, 8, 15, 22, 18, 25],
+                    data: {{ blog_chart_data|safe }},
                     borderColor: '#3b82f6',
                     backgroundColor: 'rgba(59, 130, 246, 0.1)',
                     borderWidth: 3,
@@ -675,6 +668,9 @@
                 scales: {
                     y: {
                         beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        },
                         grid: {
                             color: '#f1f5f9'
                         }
@@ -693,9 +689,9 @@
         new Chart(contactCtx, {
             type: 'doughnut',
             data: {
-                labels: ['Job Inquiry', 'Consultant Request', 'Training Info', 'Travel Services', 'General Questions'],
+                labels: {{ contact_chart_labels|safe }},
                 datasets: [{
-                    data: [30, 25, 20, 15, 10],
+                    data: {{ contact_chart_data|safe }},
                     backgroundColor: [
                         '#3b82f6',
                         '#10b981',
@@ -726,10 +722,10 @@
         new Chart(jobCtx, {
             type: 'bar',
             data: {
-                labels: ['Unskilled', 'Semi-skilled', 'Skilled', 'Professional'],
+                labels: {{ job_chart_labels|safe }},
                 datasets: [{
                     label: 'Number of Jobs',
-                    data: [15, 20, 12, 9],
+                    data: {{ job_chart_data|safe }},
                     backgroundColor: [
                         '#3b82f6',
                         '#10b981',
@@ -751,6 +747,9 @@
                 scales: {
                     y: {
                         beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        },
                         grid: {
                             color: '#f1f5f9'
                         }
@@ -769,16 +768,17 @@
         new Chart(galleryCtx, {
             type: 'polarArea',
             data: {
-                labels: ['Events', 'Meetings', 'Festivals', 'Success Stories', 'Trainings', 'Community Work'],
+                labels: {{ gallery_chart_labels|safe }},
                 datasets: [{
-                    data: [300, 250, 400, 180, 220, 150],
+                    data: {{ gallery_chart_data|safe }},
                     backgroundColor: [
                         'rgba(59, 130, 246, 0.8)',
                         'rgba(16, 185, 129, 0.8)',
                         'rgba(245, 158, 11, 0.8)',
                         'rgba(239, 68, 68, 0.8)',
                         'rgba(139, 92, 246, 0.8)',
-                        'rgba(236, 72, 153, 0.8)'
+                        'rgba(236, 72, 153, 0.8)',
+                        'rgba(107, 114, 128, 0.8)'
                     ],
                     borderWidth: 0
                 }]
@@ -799,6 +799,9 @@
                     r: {
                         grid: {
                             color: '#f1f5f9'
+                        },
+                        ticks: {
+                            precision: 0
                         },
                         pointLabels: {
                             display: false

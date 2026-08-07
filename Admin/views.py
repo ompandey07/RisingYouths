@@ -4,11 +4,15 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
-from .models import BlogPost , YouthJob, ManpowerGallery
+from .models import BlogPost , YouthJob, ManpowerGallery, GalleryCategory
 from Backend.models import ContactMessage
 from django.contrib.auth.models import User
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.urls import reverse_lazy
+import json
+from datetime import datetime
+from django.utils import timezone
+import bleach
 
 # Create your views here.
 
@@ -84,14 +88,67 @@ def admin_dashboard_view(request):
     # Real data counts
     total_blogs = BlogPost.objects.count()
     total_contact = ContactMessage.objects.count()
-    total_jobs = YouthJob.objects.count()  # Add this
-    total_gallery_images = ManpowerGallery.objects.count()  # Add this
+    total_jobs = YouthJob.objects.count()
+    total_gallery_images = ManpowerGallery.objects.count()
+
+    # 1. Monthly Blog Posts (last 7 months)
+    now = timezone.now()
+    blog_labels = []
+    blog_data = []
+    for i in range(6, -1, -1):
+        year = now.year
+        month = now.month - i
+        while month <= 0:
+            month += 12
+            year -= 1
+        month_name = datetime(year, month, 1).strftime('%b')
+        count = BlogPost.objects.filter(
+            created_at__year=year,
+            created_at__month=month
+        ).count()
+        blog_labels.append(month_name)
+        blog_data.append(count)
+
+    # 2. Contact Messages by Subject
+    contact_counts_qs = ContactMessage.objects.values('subject').annotate(count=Count('id'))
+    contact_counts_map = {item['subject']: item['count'] for item in contact_counts_qs}
+    contact_chart_labels = []
+    contact_chart_data = []
+    for key, label in ContactMessage.SUBJECT_CHOICES:
+        contact_chart_labels.append(label)
+        contact_chart_data.append(contact_counts_map.get(key, 0))
+
+    # 3. Job Categories Distribution
+    job_counts_qs = YouthJob.objects.values('category').annotate(count=Count('id'))
+    job_counts_map = {item['category']: item['count'] for item in job_counts_qs}
+    job_chart_labels = []
+    job_chart_data = []
+    for key, label in YouthJob.CATEGORY_CHOICES:
+        job_chart_labels.append(label)
+        job_chart_data.append(job_counts_map.get(key, 0))
+
+    # 4. Gallery Images by Category
+    gallery_counts_qs = ManpowerGallery.objects.values('category').annotate(count=Count('id'))
+    gallery_counts_map = {item['category']: item['count'] for item in gallery_counts_qs}
+    gallery_chart_labels = []
+    gallery_chart_data = []
+    for key, label in GalleryCategory.choices:
+        gallery_chart_labels.append(label)
+        gallery_chart_data.append(gallery_counts_map.get(key, 0))
 
     context = {
         'total_blogs': total_blogs,
         'total_contact': total_contact,
-        'total_jobs': total_jobs,  # Add this
-        'total_gallery_images': total_gallery_images,  # Add this
+        'total_jobs': total_jobs,
+        'total_gallery_images': total_gallery_images,
+        'blog_chart_labels': json.dumps(blog_labels),
+        'blog_chart_data': json.dumps(blog_data),
+        'contact_chart_labels': json.dumps(contact_chart_labels),
+        'contact_chart_data': json.dumps(contact_chart_data),
+        'job_chart_labels': json.dumps(job_chart_labels),
+        'job_chart_data': json.dumps(job_chart_data),
+        'gallery_chart_labels': json.dumps(gallery_chart_labels),
+        'gallery_chart_data': json.dumps(gallery_chart_data),
     }
 
     return render(request, 'Admin/AdminDashboard.html', context)
@@ -257,21 +314,33 @@ def blog_list_view(request):
 def contact_messages_view(request):
     """
     Display all contact messages for admin review.
-    Shows messages ordered by submission date.
+    Shows messages ordered by submission date (newest first) with search support.
     """
     if not request.user.is_authenticated:
         return redirect('login_view')
     
     if not request.user.is_superuser and request.user.username != "admin@admin.com":
-        return redirect('error_acces_denied')
+        return redirect('error_access_denied')
     
-    # Latest messages at end (remove '-' from ordering)
-    contact_messages = ContactMessage.objects.all().order_by('submitted_at')
+    search_query = request.GET.get('q', '').strip()
+    if search_query:
+        contact_messages = ContactMessage.objects.filter(
+            Q(first_name__icontains=search_query) |
+            Q(last_name__icontains=search_query) |
+            Q(email__icontains=search_query) |
+            Q(phone__icontains=search_query) |
+            Q(subject__icontains=search_query) |
+            Q(message__icontains=search_query)
+        ).order_by('-submitted_at')
+    else:
+        contact_messages = ContactMessage.objects.all().order_by('-submitted_at')
+    
     total_messages = contact_messages.count()
     
     context = {
         'contact_messages': contact_messages,
         'total_messages': total_messages,
+        'search_query': search_query,
     }
     
     return render(request, 'Admin/ContactMessages.html', context)
@@ -376,8 +445,18 @@ def manage_gallery_view(request):
 def manage_jobs_view(request):
     """
     Handle job management operations (add, update, delete).
-    Supports CRUD operations for youth job postings with image uploads.
+    Supports CRUD operations for youth job postings with image uploads,
+    CKEditor rich text sanitization via Bleach, and search filtering.
     """
+    allowed_tags = ['p', 'b', 'i', 'u', 'em', 'strong', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'br', 'span', 'blockquote', 'div', 'img']
+    allowed_attrs = {
+        'a': ['href', 'title', 'target'],
+        'img': ['src', 'alt', 'width', 'height'],
+        'span': ['style'],
+        'p': ['style'],
+        'div': ['style'],
+    }
+
     if request.method == 'POST':
         action = request.POST.get('action')
         
@@ -385,14 +464,15 @@ def manage_jobs_view(request):
             job_title = request.POST.get('job_title')
             category = request.POST.get('category')
             job_image = request.FILES.get('job_image')
-            job_description = request.POST.get('job_description')
+            job_description = request.POST.get('job_description', '')
             
             if job_title and category and job_image and job_description:
+                cleaned_description = bleach.clean(job_description, tags=allowed_tags, attributes=allowed_attrs, strip=True)
                 YouthJob.objects.create(
                     job_title=job_title,
                     category=category,
                     job_image=job_image,
-                    job_description=job_description
+                    job_description=cleaned_description
                 )
                 messages.success(request, 'Job posted successfully!')
             else:
@@ -403,13 +483,14 @@ def manage_jobs_view(request):
             job_title = request.POST.get('job_title')
             category = request.POST.get('category')
             job_image = request.FILES.get('job_image')
-            job_description = request.POST.get('job_description')
+            job_description = request.POST.get('job_description', '')
             
             try:
                 job = YouthJob.objects.get(id=job_id)
                 job.job_title = job_title
                 job.category = category
-                job.job_description = job_description
+                if job_description:
+                    job.job_description = bleach.clean(job_description, tags=allowed_tags, attributes=allowed_attrs, strip=True)
                 
                 if job_image:
                     job.job_image = job_image
@@ -431,11 +512,20 @@ def manage_jobs_view(request):
         
         return redirect('manage_jobs_view')
     
-    # GET request
-    jobs = YouthJob.objects.all().order_by('-posted_at')
+    # GET request with search filtering
+    search_query = request.GET.get('q', '').strip()
+    if search_query:
+        jobs = YouthJob.objects.filter(
+            Q(job_title__icontains=search_query) |
+            Q(category__icontains=search_query) |
+            Q(job_description__icontains=search_query)
+        ).order_by('-posted_at')
+    else:
+        jobs = YouthJob.objects.all().order_by('-posted_at')
     
     return render(request, 'Admin/manage_jobs.html', {
         'jobs': jobs,
+        'search_query': search_query,
     })
 
 # ========================================

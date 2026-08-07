@@ -17,10 +17,10 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: #f8fafc;
-            overflow-x: hidden;
+            color: #334155;
         }
 
-        /* Top Loading Bar - YouTube Style */
+        /* Top Loading Bar */
         .loading-bar {
             position: fixed;
             top: 0;
@@ -96,7 +96,7 @@
             color: #374151;
         }
 
-        /* Left Sidebar - Aurora Style */
+        /* Left Sidebar */
         .sidebar {
             position: fixed;
             top: 0;
@@ -172,7 +172,7 @@
             flex-shrink: 0;
         }
 
-        /* Top Navigation - Updated */
+        /* Top Navigation */
         .top-nav {
             background: white;
             border-bottom: 1px solid #e2e8f0;
@@ -183,10 +183,6 @@
             right: 0;
             z-index: 1000;
             height: 64px;
-        }
-
-        .top-nav .mobile-menu-toggle {
-            display: none;
         }
 
         /* Main Content */
@@ -237,45 +233,61 @@
             background: #f9fafb;
         }
 
-        /* Table Styles */
-        .table-container {
+        /* Table Container & Smooth Scrolling */
+        .table-card {
             background: white;
-            border: 1px solid #e5e7eb;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+        }
+
+        .table-scroll-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+            max-height: calc(100vh - 240px);
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
         }
 
         .data-table {
             width: 100%;
-            border-collapse: collapse;
-            border: 1px solid #e5e7eb;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 900px;
         }
 
         .data-table th {
+            position: sticky;
+            top: 0;
             background: #f8fafc;
-            padding: 16px 12px;
+            z-index: 10;
+            padding: 14px 16px;
             text-align: left;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            color: #374151;
-            border: 1px solid #e5e7eb;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #e2e8f0;
             white-space: nowrap;
         }
 
         .data-table th svg {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
-            vertical-align: text-top;
+            width: 15px;
+            height: 15px;
+            margin-right: 6px;
+            display: inline-block;
+            vertical-align: sub;
         }
 
         .data-table td {
-            padding: 12px;
-            border: 1px solid #e5e7eb;
+            padding: 14px 16px;
+            border-bottom: 1px solid #f1f5f9;
             font-size: 14px;
-            color: #374151;
-            vertical-align: top;
+            color: #334155;
+            vertical-align: middle;
         }
 
         .data-table tbody tr:hover {
@@ -285,33 +297,34 @@
         .status-badge {
             display: inline-flex;
             align-items: center;
-            padding: 4px 8px;
-            border-radius: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
+            line-height: 1;
         }
 
-        .status-job-inquiry {
+        .status-job-inquiry, .status-job_inquiry {
             background: #dbeafe;
             color: #1d4ed8;
         }
 
-        .status-consultant-request {
+        .status-consultant-request, .status-consultant_request {
             background: #dcfce7;
             color: #166534;
         }
 
-        .status-training-information {
+        .status-training-information, .status-training_information {
             background: #fef3c7;
             color: #92400e;
         }
 
-        .status-travel-services {
+        .status-travel-services, .status-travel_services {
             background: #fce7f3;
             color: #be185d;
         }
 
-        .status-general-questions {
+        .status-general-questions, .status-general_questions {
             background: #e0e7ff;
             color: #3730a3;
         }
@@ -320,26 +333,45 @@
             padding: 6px 12px;
             font-size: 12px;
             font-weight: 500;
-            border: 1px solid #e5e7eb;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-view {
+            background: #eff6ff;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+        }
+
+        .btn-view:hover {
+            background: #dbeafe;
         }
 
         .btn-delete {
             background: #fef2f2;
             color: #dc2626;
-            border-color: #fecaca;
+            border: 1px solid #fecaca;
         }
 
         .btn-delete:hover {
             background: #fee2e2;
-            border-color: #fca5a5;
         }
 
-        /* Serial Number Column */
-        .serial-col {
-            width: 60px;
-            text-align: center;
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
         }
 
         /* Responsive */
@@ -366,17 +398,9 @@
                 margin-left: 0;
                 margin-top: 60px;
             }
-
-            .table-container {
-                overflow-x: auto;
-            }
-
-            .data-table {
-                min-width: 800px;
-            }
         }
 
-        /* Animation for loading */
+        /* Animation */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -416,7 +440,6 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                 </svg>
             </button>
-            <!-- Dropdown Menu -->
             <div class="dropdown-menu" id="userDropdown">
                 <a href="{% url "logout_view" %}" class="dropdown-item">
                     <svg class="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -430,8 +453,11 @@
 
     <!-- Top Navigation (Desktop Only) -->
     <nav class="top-nav">
-        <div class="flex items-center justify-end h-full px-6">
-            <!-- Right: User Info -->
+        <div class="flex items-center justify-between h-full px-6">
+            <div class="flex items-center gap-3">
+                <h2 class="text-lg font-bold text-gray-800">Contact Messages</h2>
+            </div>
+            
             <div class="user-dropdown">
                 <button onclick="toggleDropdown()" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
                     <span class="text-gray-700 font-medium hidden sm:block">{{ user.get_full_name|default:user.username }}</span>
@@ -444,8 +470,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
-
-                <!-- Dropdown Menu -->
                 <div class="dropdown-menu" id="userDropdownDesktop">
                     <a href="{% url "logout_view" %}" class="dropdown-item">
                         <svg class="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -458,15 +482,13 @@
         </div>
     </nav>
 
-    <!-- Left Sidebar - Aurora Style -->
+    <!-- Left Sidebar -->
     <aside class="sidebar" id="sidebar">
-        <!-- Logo Section -->
         <div class="sidebar-logo">
             <img src="{% static 'Images/Logo/logo.png' %}" alt="Logo">
             <span>Rising Youths</span>
         </div>
 
-        <!-- Homepage Section -->
         <div class="sidebar-section">
             <div class="sidebar-section-title">HOMEPAGE</div>
             <a href="{% url 'admin_dashboard' %}" class="sidebar-item">
@@ -477,7 +499,6 @@
             </a>
         </div>
 
-        <!-- Management Section -->
         <div class="sidebar-section">
             <div class="sidebar-section-title">MANAGEMENT</div>
             <a href="{% url "manage_blog_view" %}" class="sidebar-item">
@@ -498,7 +519,7 @@
                 </svg>
                 Contacts
             </a>
-            <a href="#" class="sidebar-item">
+            <a href="{% url 'manage_jobs_view' %}" class="sidebar-item">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
                 </svg>
@@ -507,20 +528,42 @@
         </div>
     </aside>
 
-    <!-- Main Content -->
+    <!-- Main Content Area -->
     <main class="main-content">
-        <!-- Contact Messages Table -->
-        <div class="table-container fade-in-up">
-            <div class="overflow-x-auto">
+        <div class="table-card fade-in-up">
+            <!-- Header Bar with Title, Counter & Search -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-2xl font-bold text-gray-900">User Contact Messages</h1>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-1 rounded-full">{{ total_messages }} Total</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Review contact inquiries submitted by website visitors.</p>
+                </div>
+
+                <!-- Search Form -->
+                <form method="GET" action="{% url 'contact_messages_view' %}" class="flex items-center gap-2 w-full md:w-80">
+                    <div class="relative w-full">
+                        <input type="text" name="q" value="{{ search_query }}" 
+                            placeholder="Search contacts..." 
+                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                        <svg class="w-4 h-4 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    {% if search_query %}
+                    <a href="{% url 'contact_messages_view' %}" class="px-3 py-2 text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">Clear</a>
+                    {% endif %}
+                    <button type="submit" class="btn-primary text-sm py-2 px-4">Search</button>
+                </form>
+            </div>
+
+            <!-- Scrollable Table Container -->
+            <div class="table-scroll-wrapper">
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th class="serial-col">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
-                                </svg>
-                                S.N.
-                            </th>
+                            <th style="width: 50px; text-align: center;">S.N.</th>
                             <th>
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
@@ -555,34 +598,29 @@
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
-                                Submitted
+                                Submitted Date
                             </th>
-                            <th>
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
-                                </svg>
-                                Action
-                            </th>
+                            <th style="text-align: center;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for message in contact_messages %}
                         <tr>
-                            <td class="serial-col">
-                                <strong>{{ forloop.counter }}</strong>
+                            <td style="text-align: center;" class="font-bold text-gray-500">
+                                {{ forloop.counter }}
                             </td>
                             <td>
-                                <div class="font-medium text-gray-900">
+                                <div class="font-semibold text-gray-900">
                                     {{ message.first_name }} {{ message.last_name }}
                                 </div>
                             </td>
                             <td>
-                                <a href="mailto:{{ message.email }}" class="text-blue-600 hover:text-blue-800">
+                                <a href="mailto:{{ message.email }}" class="text-blue-600 hover:underline">
                                     {{ message.email }}
                                 </a>
                             </td>
                             <td>
-                                <a href="tel:{{ message.phone }}" class="text-gray-700">
+                                <a href="tel:{{ message.phone }}" class="text-gray-700 hover:text-gray-900">
                                     {{ message.phone }}
                                 </a>
                             </td>
@@ -592,34 +630,51 @@
                                 </span>
                             </td>
                             <td>
-                                <div class="max-w-xs truncate" title="{{ message.message }}">
-                                    {{ message.message|truncatechars:50 }}
+                                <div class="max-w-xs text-gray-600 text-sm truncate cursor-pointer hover:text-blue-600"
+                                     onclick="viewMessage('{{ message.first_name|escapejs }} {{ message.last_name|escapejs }}', '{{ message.email|escapejs }}', '{{ message.phone|escapejs }}', '{{ message.subject }}', '{{ message.get_subject_display|escapejs }}', '{{ message.message|escapejs }}', '{{ message.submitted_at|date:"M d, Y" }} at {{ message.submitted_at|time:"h:i A" }}', {{ message.id }})">
+                                    {{ message.message|truncatechars:45 }}
                                 </div>
                             </td>
                             <td>
-                                <div class="text-sm text-gray-500">
-                                    {{ message.submitted_at|date:"M d, Y" }}
+                                <div class="text-xs text-gray-500 whitespace-nowrap">
+                                    <span class="font-medium text-gray-700">{{ message.submitted_at|date:"M d, Y" }}</span>
                                     <br>
-                                    {{ message.submitted_at|time:"h:i A" }}
+                                    <span>{{ message.submitted_at|time:"h:i A" }}</span>
                                 </div>
                             </td>
                             <td>
-                                <form method="post" action="{% url 'delete_contact_message' message.id %}" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this message?')">
-                                    {% csrf_token %}
-                                    <button type="submit" class="action-button btn-delete">
-                                        Delete
+                                <div class="flex items-center justify-center gap-2">
+                                    <!-- View Button -->
+                                    <button type="button" class="action-button btn-view"
+                                        onclick="viewMessage('{{ message.first_name|escapejs }} {{ message.last_name|escapejs }}', '{{ message.email|escapejs }}', '{{ message.phone|escapejs }}', '{{ message.subject }}', '{{ message.get_subject_display|escapejs }}', '{{ message.message|escapejs }}', '{{ message.submitted_at|date:"M d, Y" }} at {{ message.submitted_at|time:"h:i A" }}', {{ message.id }})">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                        View
                                     </button>
-                                </form>
+
+                                    <!-- Delete Button -->
+                                    <form method="post" action="{% url 'delete_contact_message' message.id %}" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this contact message?')">
+                                        {% csrf_token %}
+                                        <button type="submit" class="action-button btn-delete">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="8" class="text-center py-12 text-gray-500">
+                            <td colspan="8" class="text-center py-16 text-gray-500">
                                 <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 009.586 13H7"></path>
                                 </svg>
-                                <div class="text-lg font-medium text-gray-900 mb-2">No contact messages yet</div>
-                                <div class="text-gray-500">Contact form submissions will appear here when visitors reach out to you.</div>
+                                <div class="text-lg font-semibold text-gray-900 mb-1">No Messages Found</div>
+                                <div class="text-gray-500 text-sm">{% if search_query %}No contact messages matched your search phrase.{% else %}Contact form submissions will appear here.{% endif %}</div>
                             </td>
                         </tr>
                         {% endfor %}
@@ -629,23 +684,108 @@
         </div>
     </main>
 
+    <!-- Message Detail Modal -->
+    <div id="messageModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 fade-in-up">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200 sticky top-0 bg-white z-10">
+                <div class="flex items-center gap-3">
+                    <h3 class="text-xl font-bold text-gray-900">Message Details</h3>
+                    <span id="modalSubjectBadge" class="status-badge">Subject</span>
+                </div>
+                <button type="button" onclick="closeMessageModal()" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-5">
+                <!-- User Info Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <div>
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Sender Name</p>
+                        <p id="modalName" class="text-base font-bold text-gray-900 mt-1">-</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Submitted On</p>
+                        <p id="modalDate" class="text-sm font-medium text-gray-700 mt-1">-</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Email Address</p>
+                        <a id="modalEmail" href="#" class="text-sm font-medium text-blue-600 hover:underline mt-1 block">-</a>
+                    </div>
+                    <div>
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Phone Number</p>
+                        <a id="modalPhone" href="#" class="text-sm font-medium text-gray-800 hover:underline mt-1 block">-</a>
+                    </div>
+                </div>
+
+                <!-- Complete Message Text -->
+                <div>
+                    <h4 class="text-sm font-bold text-gray-900 mb-2">Message Body</h4>
+                    <div id="modalMessage" class="p-4 bg-white border border-gray-200 rounded-xl text-gray-700 text-sm leading-relaxed whitespace-pre-wrap min-h-[120px]">
+                        -
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex items-center justify-between px-6 py-4 border-t border-gray-100 bg-gray-50">
+                <form id="modalDeleteForm" method="post" action="" onsubmit="return confirm('Are you sure you want to delete this message?')">
+                    {% csrf_token %}
+                    <button type="submit" class="action-button btn-delete py-2 px-4">
+                        Delete Message
+                    </button>
+                </form>
+                <button type="button" onclick="closeMessageModal()" class="btn-primary py-2 px-5 text-sm">Close</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Modal Control Functions
+        function viewMessage(name, email, phone, subjectKey, subjectDisplay, message, dateStr, messageId) {
+            document.getElementById('modalName').textContent = name;
+            
+            const emailElem = document.getElementById('modalEmail');
+            emailElem.textContent = email;
+            emailElem.href = 'mailto:' + email;
+
+            const phoneElem = document.getElementById('modalPhone');
+            phoneElem.textContent = phone;
+            phoneElem.href = 'tel:' + phone;
+
+            document.getElementById('modalDate').textContent = dateStr;
+            document.getElementById('modalMessage').textContent = message;
+
+            const badge = document.getElementById('modalSubjectBadge');
+            badge.textContent = subjectDisplay;
+            badge.className = 'status-badge status-' + subjectKey.toLowerCase().replace(/_/g, '-');
+
+            const deleteForm = document.getElementById('modalDeleteForm');
+            deleteForm.action = "{% url 'delete_contact_message' 0 %}".replace('0', messageId);
+
+            document.getElementById('messageModal').classList.remove('hidden');
+        }
+
+        function closeMessageModal() {
+            document.getElementById('messageModal').classList.add('hidden');
+        }
+
         // YouTube-style Loading Bar
         function showLoadingBar() {
             const loadingBar = document.querySelector('.loading-bar');
             const loadingProgress = document.getElementById('loadingProgress');
+            if (!loadingBar || !loadingProgress) return;
             
-            // Make sure loading bar is visible
             loadingBar.style.display = 'block';
             loadingProgress.style.width = '0%';
             loadingProgress.style.opacity = '1';
             
-            // Immediate start
-            setTimeout(() => {
-                loadingProgress.style.width = '20%';
-            }, 50);
+            setTimeout(() => { loadingProgress.style.width = '20%'; }, 50);
             
-            // Progressive loading simulation
             let progress = 20;
             const interval = setInterval(() => {
                 progress += Math.random() * 20;
@@ -656,7 +796,6 @@
                 loadingProgress.style.width = progress + '%';
             }, 150);
             
-            // Complete loading when page is ready
             const completeLoading = () => {
                 clearInterval(interval);
                 loadingProgress.style.width = '100%';
@@ -673,25 +812,18 @@
                 }, 300);
             };
             
-            // Complete on window load or after 3 seconds max
             window.addEventListener('load', completeLoading);
             setTimeout(completeLoading, 3000);
         }
 
-        // Start loading bar immediately when script runs
         document.addEventListener('DOMContentLoaded', showLoadingBar);
-        
-        // Also start immediately if DOM is already loaded
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', showLoadingBar);
-        } else {
-            showLoadingBar();
-        }
 
         // Toggle dropdown menu
         function toggleDropdown() {
             const dropdown = document.getElementById('userDropdown');
-            dropdown.classList.toggle('show');
+            const dropdownDesktop = document.getElementById('userDropdownDesktop');
+            if (dropdown) dropdown.classList.toggle('show');
+            if (dropdownDesktop) dropdownDesktop.classList.toggle('show');
         }
 
         // Toggle mobile sidebar
@@ -703,10 +835,12 @@
         // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
             const dropdown = document.getElementById('userDropdown');
+            const dropdownDesktop = document.getElementById('userDropdownDesktop');
             const userButton = event.target.closest('.user-dropdown button');
             
-            if (!userButton && dropdown.classList.contains('show')) {
-                dropdown.classList.remove('show');
+            if (!userButton) {
+                if (dropdown && dropdown.classList.contains('show')) dropdown.classList.remove('show');
+                if (dropdownDesktop && dropdownDesktop.classList.contains('show')) dropdownDesktop.classList.remove('show');
             }
         });
 
@@ -714,9 +848,8 @@
         document.addEventListener('click', function(event) {
             const sidebar = document.getElementById('sidebar');
             const toggleButton = event.target.closest('.mobile-menu-btn');
-            const topNavToggle = event.target.closest('button[onclick="toggleSidebar()"]');
             
-            if (!sidebar.contains(event.target) && !toggleButton && !topNavToggle && sidebar.classList.contains('mobile-open')) {
+            if (!sidebar.contains(event.target) && !toggleButton && sidebar.classList.contains('mobile-open')) {
                 sidebar.classList.remove('mobile-open');
             }
         });
